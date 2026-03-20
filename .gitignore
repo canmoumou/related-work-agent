@@ -38,8 +38,8 @@ venv.bak/
 # Environment variables
 .env
 
-# Output directory (optional, if you want to keep output files local only)
-# output/
+# Output directory (generated files, keep local only)
+output/
 
 # pytest
 .pytest_cache/

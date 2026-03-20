@@ -31,7 +31,10 @@ class LLMClient:
     async def chat(self, messages: list[LLMMessage], temperature: float = 0.2) -> str:
         """发送一次基础聊天请求，返回模型原始文本。"""
         if not self.is_configured():
-            raise RuntimeError("Qwen client is not configured. Please provide QWEN_API_KEY, QWEN_BASE_URL, and QWEN_MODEL.")
+            raise RuntimeError(
+                "Qwen client is not configured. Please set QWEN_API_KEY environment variable "
+                "or add it to .env file. Get your API key from: https://dashscope.console.aliyun.com/apiKey"
+            )
 
         headers = {
             "Authorization": f"Bearer {self.settings.qwen_api_key}",

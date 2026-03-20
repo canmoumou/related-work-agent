@@ -81,17 +81,43 @@ Windows PowerShell:
 .\paper\Scripts\Activate.ps1
 ```
 
-复制环境变量模板：
+配置 API Key（二选一）：
+
+**方式 1：使用 .env 文件（推荐开发环境）**
 
 ```bash
 copy .env.example .env
 ```
 
-至少可配置：
+然后编辑 `.env` 文件，填入你的 API key：
 
-- `QWEN_API_KEY`
-- `QWEN_BASE_URL`
-- `QWEN_MODEL`
+```env
+QWEN_API_KEY=your-api-key-here
+```
+
+**方式 2：使用环境变量（推荐生产环境）**
+
+Linux/macOS:
+```bash
+export QWEN_API_KEY=your-api-key-here
+```
+
+Windows PowerShell:
+```powershell
+$env:QWEN_API_KEY="your-api-key-here"
+```
+
+Windows CMD:
+```cmd
+set QWEN_API_KEY=your-api-key-here
+```
+
+> **注意**：环境变量优先级高于 `.env` 文件。如果两者都设置了，以环境变量为准。
+
+可选配置项：
+- `QWEN_API_KEY` - 阿里云百炼 API key（必填）
+- `QWEN_BASE_URL` - API 基础地址（默认已配置）
+- `QWEN_MODEL` - 模型名称，默认 qwen-plus
 
 不配置 Qwen 也可以运行，但会走启发式 fallback，生成质量会下降。
 
