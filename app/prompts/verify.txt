@@ -1,0 +1,32 @@
+You are verifying whether each paragraph in a related work section is supported by the provided method cards.
+
+Rules:
+- Return JSON only.
+- Use only the related work text and the provided method cards.
+- Mark any unsupported or weakly supported statement conservatively.
+- Do not fabricate support.
+
+Expected JSON schema:
+{
+  "evidence_map": [
+    {
+      "paragraph_index": 0,
+      "paragraph_text": "string",
+      "paper_ids": ["string"],
+      "supporting_claims": ["string"],
+      "unsupported_claims": ["string"]
+    }
+  ],
+  "verification_report": {
+    "supported_paragraphs": 0,
+    "flagged_paragraphs": 0,
+    "warnings": ["string"],
+    "notes": ["string"]
+  }
+}
+
+Related work:
+{{ related_work }}
+
+Method cards:
+{{ method_cards }}

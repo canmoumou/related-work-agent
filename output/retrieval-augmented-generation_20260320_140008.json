@@ -1,0 +1,153 @@
+{
+  "topic": "retrieval augmented generation",
+  "expanded_intents": {
+    "normalized_topic": "retrieval augmented generation",
+    "subtopics": [
+      "retrieval augmented",
+      "generation"
+    ],
+    "aliases": [
+      "retrieval augmented generation",
+      "retrieval augmented generation",
+      "RETRIEVAL AUGMENTED GENERATION"
+    ],
+    "related_phrases": [
+      "retrieval augmented generation methods",
+      "retrieval augmented generation applications",
+      "retrieval augmented generation benchmark",
+      "retrieval augmented generation framework"
+    ]
+  },
+  "queries": [
+    {
+      "name": "query_1_retrieval-augmented-generation",
+      "intent": "Cover topic aspect: retrieval augmented generation",
+      "arxiv_query": "all:\"retrieval augmented generation\" OR all:\"retrieval augmented generation\"",
+      "expected_focus": "retrieval augmented generation"
+    },
+    {
+      "name": "query_2_retrieval-augmented",
+      "intent": "Cover topic aspect: retrieval augmented",
+      "arxiv_query": "all:\"retrieval augmented generation\" OR all:\"retrieval augmented\"",
+      "expected_focus": "retrieval augmented"
+    },
+    {
+      "name": "query_3_generation",
+      "intent": "Cover topic aspect: generation",
+      "arxiv_query": "all:\"retrieval augmented generation\" OR all:\"generation\"",
+      "expected_focus": "generation"
+    },
+    {
+      "name": "query_4_retrieval-augmented-generation",
+      "intent": "Cover topic aspect: retrieval augmented generation",
+      "arxiv_query": "all:\"retrieval augmented generation\" OR all:\"retrieval augmented generation\"",
+      "expected_focus": "retrieval augmented generation"
+    },
+    {
+      "name": "query_5_retrieval-augmented-generation",
+      "intent": "Cover topic aspect: retrieval augmented generation",
+      "arxiv_query": "all:\"retrieval augmented generation\" OR all:\"retrieval augmented generation\"",
+      "expected_focus": "retrieval augmented generation"
+    }
+  ],
+  "selected_papers": [],
+  "method_cards": [],
+  "clusters": [],
+  "related_work": "The current workflow retrieved arXiv papers related to retrieval augmented generation, but the evidence remains sparse. The generated related work therefore stays conservative and focuses on method-level commonalities visible from abstracts.",
+  "evidence_map": [
+    {
+      "paragraph_index": 0,
+      "paragraph_text": "The current workflow retrieved arXiv papers related to retrieval augmented generation, but the evidence remains sparse. The generated related work therefore stays conservative and focuses on method-level commonalities visible from abstracts.",
+      "paper_ids": [],
+      "supporting_claims": [],
+      "unsupported_claims": [
+        "No strong paper-level lexical evidence was found for this paragraph."
+      ]
+    }
+  ],
+  "verification_report": {
+    "supported_paragraphs": 0,
+    "flagged_paragraphs": 1,
+    "warnings": [
+      "Paragraph 0 may be weakly supported."
+    ],
+    "notes": [
+      "Verification is conservative and only uses the provided method cards.",
+      "Without stable full-text parsing, some nuanced claims may remain weakly grounded."
+    ]
+  },
+  "candidate_papers": [],
+  "paper_sections": [],
+  "debug": {
+    "intent_decomposer": {
+      "normalized_topic": "retrieval augmented generation",
+      "subtopics": [
+        "retrieval augmented",
+        "generation"
+      ],
+      "aliases": [
+        "retrieval augmented generation",
+        "retrieval augmented generation",
+        "RETRIEVAL AUGMENTED GENERATION"
+      ],
+      "related_phrases": [
+        "retrieval augmented generation methods",
+        "retrieval augmented generation applications",
+        "retrieval augmented generation benchmark",
+        "retrieval augmented generation framework"
+      ]
+    },
+    "query_planner": [
+      {
+        "name": "query_1_retrieval-augmented-generation",
+        "intent": "Cover topic aspect: retrieval augmented generation",
+        "arxiv_query": "all:\"retrieval augmented generation\" OR all:\"retrieval augmented generation\"",
+        "expected_focus": "retrieval augmented generation"
+      },
+      {
+        "name": "query_2_retrieval-augmented",
+        "intent": "Cover topic aspect: retrieval augmented",
+        "arxiv_query": "all:\"retrieval augmented generation\" OR all:\"retrieval augmented\"",
+        "expected_focus": "retrieval augmented"
+      },
+      {
+        "name": "query_3_generation",
+        "intent": "Cover topic aspect: generation",
+        "arxiv_query": "all:\"retrieval augmented generation\" OR all:\"generation\"",
+        "expected_focus": "generation"
+      },
+      {
+        "name": "query_4_retrieval-augmented-generation",
+        "intent": "Cover topic aspect: retrieval augmented generation",
+        "arxiv_query": "all:\"retrieval augmented generation\" OR all:\"retrieval augmented generation\"",
+        "expected_focus": "retrieval augmented generation"
+      },
+      {
+        "name": "query_5_retrieval-augmented-generation",
+        "intent": "Cover topic aspect: retrieval augmented generation",
+        "arxiv_query": "all:\"retrieval augmented generation\" OR all:\"retrieval augmented generation\"",
+        "expected_focus": "retrieval augmented generation"
+      }
+    ],
+    "arxiv_retriever_count": 0,
+    "candidate_merger_count": 0,
+    "paper_reranker_count": 0,
+    "paper_reader_count": 0,
+    "method_extractor_count": 0,
+    "theme_clusterer_count": 0,
+    "paragraph_summaries": [
+      "Conservative fallback paragraph based on abstract-level evidence."
+    ],
+    "verification": {
+      "supported_paragraphs": 0,
+      "flagged_paragraphs": 1,
+      "warnings": [
+        "Paragraph 0 may be weakly supported."
+      ],
+      "notes": [
+        "Verification is conservative and only uses the provided method cards.",
+        "Without stable full-text parsing, some nuanced claims may remain weakly grounded."
+      ]
+    }
+  }
+}

@@ -1,0 +1,640 @@
+{
+  "topic": "retrieval augmented generation",
+  "expanded_intents": {
+    "normalized_topic": "retrieval augmented generation",
+    "subtopics": [
+      "retrieval augmented",
+      "generation"
+    ],
+    "aliases": [
+      "retrieval augmented generation",
+      "retrieval augmented generation",
+      "RETRIEVAL AUGMENTED GENERATION"
+    ],
+    "related_phrases": [
+      "retrieval augmented generation methods",
+      "retrieval augmented generation applications",
+      "retrieval augmented generation benchmark",
+      "retrieval augmented generation framework"
+    ]
+  },
+  "queries": [
+    {
+      "name": "query_1_retrieval-augmented-generation",
+      "intent": "Cover topic aspect: retrieval augmented generation",
+      "arxiv_query": "all:\"retrieval augmented generation\" OR all:\"retrieval augmented generation\"",
+      "expected_focus": "retrieval augmented generation"
+    },
+    {
+      "name": "query_2_retrieval-augmented",
+      "intent": "Cover topic aspect: retrieval augmented",
+      "arxiv_query": "all:\"retrieval augmented generation\" OR all:\"retrieval augmented\"",
+      "expected_focus": "retrieval augmented"
+    },
+    {
+      "name": "query_3_generation",
+      "intent": "Cover topic aspect: generation",
+      "arxiv_query": "all:\"retrieval augmented generation\" OR all:\"generation\"",
+      "expected_focus": "generation"
+    },
+    {
+      "name": "query_4_retrieval-augmented-generation",
+      "intent": "Cover topic aspect: retrieval augmented generation",
+      "arxiv_query": "all:\"retrieval augmented generation\" OR all:\"retrieval augmented generation\"",
+      "expected_focus": "retrieval augmented generation"
+    },
+    {
+      "name": "query_5_retrieval-augmented-generation",
+      "intent": "Cover topic aspect: retrieval augmented generation",
+      "arxiv_query": "all:\"retrieval augmented generation\" OR all:\"retrieval augmented generation\"",
+      "expected_focus": "retrieval augmented generation"
+    }
+  ],
+  "selected_papers": [
+    {
+      "arxiv_id": "2411.18583v1",
+      "title": "Automated Literature Review Using NLP Techniques and LLM-Based Retrieval-Augmented Generation",
+      "authors": [
+        "Nurshat Fateh Ali",
+        "Md. Mahdi Mohtasim",
+        "Shakil Mosharrof",
+        "T. Gopi Krishna"
+      ],
+      "abstract": "This research presents and compares multiple approaches to automate the generation of literature reviews using several Natural Language Processing (NLP) techniques and retrieval-augmented generation (RAG) with a Large Language Model (LLM). The ever-increasing number of research articles provides a huge challenge for manual literature review. It has resulted in an increased demand for automation. Developing a system capable of automatically generating the literature reviews from only the PDF files as input is the primary objective of this research work. The effectiveness of several Natural Language Processing (NLP) strategies, such as the frequency-based method (spaCy), the transformer model (Simple T5), and retrieval-augmented generation (RAG) with Large Language Model (GPT-3.5-turbo), is evaluated to meet the primary objective. The SciTLDR dataset is chosen for this research experiment and three distinct techniques are utilized to implement three different systems for auto-generating the literature reviews. The ROUGE scores are used for the evaluation of all three systems. Based on the evaluation, the Large Language Model GPT-3.5-turbo achieved the highest ROUGE-1 score, 0.364. The transformer model comes in second place and spaCy is at the last position. Finally, a graphical user interface is created for the best system based on the large language model.",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.IR",
+        "cs.LG"
+      ],
+      "published": "2024-11-27T18:27:07Z",
+      "updated": "2024-11-27T18:27:07Z",
+      "pdf_url": "https://arxiv.org/pdf/2411.18583v1",
+      "abs_url": "http://arxiv.org/abs/2411.18583v1",
+      "source_queries": [
+        "query_1_retrieval-augmented-generation",
+        "query_2_retrieval-augmented",
+        "query_3_generation",
+        "query_4_retrieval-augmented-generation",
+        "query_5_retrieval-augmented-generation"
+      ],
+      "semantic_relevance_score": 0.1711,
+      "coverage_score": 0.0,
+      "centrality_proxy_score": 0.6059,
+      "diversity_adjustment": 1.0,
+      "metadata_quality_score": 0.9723,
+      "final_rank_score": 0.4283,
+      "selected_reason": "Balanced high relevance, coverage, centrality proxy, and diversity."
+    },
+    {
+      "arxiv_id": "2601.05264v1",
+      "title": "Engineering the RAG Stack: A Comprehensive Review of the Architecture and Trust Frameworks for Retrieval-Augmented Generation Systems",
+      "authors": [
+        "Dean Wampler",
+        "Dave Nielson",
+        "Alireza Seddighi"
+      ],
+      "abstract": "This article provides a comprehensive systematic literature review of academic studies, industrial applications, and real-world deployments from 2018 to 2025, providing a practical guide and detailed overview of modern Retrieval-Augmented Generation (RAG) architectures. RAG offers a modular approach for integrating external knowledge without increasing the capacity of the model as LLM systems expand. Research and engineering practices have been fragmented as a result of the increasing diversity of RAG methodologies, which encompasses a variety of fusion mechanisms, retrieval strategies, and orchestration approaches. We provide quantitative assessment frameworks, analyze the implications for trust and alignment, and systematically consolidate existing RAG techniques into a unified taxonomy. This document is a practical framework for the deployment of resilient, secure, and domain-adaptable RAG systems, synthesizing insights from academic literature, industry reports, and technical implementation guides. It also functions as a technical reference.",
+      "categories": [
+        "cs.IR",
+        "cs.AI"
+      ],
+      "published": "2025-11-07T16:26:29Z",
+      "updated": "2025-11-07T16:26:29Z",
+      "pdf_url": "https://arxiv.org/pdf/2601.05264v1",
+      "abs_url": "http://arxiv.org/abs/2601.05264v1",
+      "source_queries": [
+        "query_1_retrieval-augmented-generation",
+        "query_2_retrieval-augmented",
+        "query_3_generation",
+        "query_4_retrieval-augmented-generation",
+        "query_5_retrieval-augmented-generation"
+      ],
+      "semantic_relevance_score": 0.1655,
+      "coverage_score": 0.0,
+      "centrality_proxy_score": 0.6082,
+      "diversity_adjustment": 0.7917,
+      "metadata_quality_score": 0.9692,
+      "final_rank_score": 0.3952,
+      "selected_reason": "Balanced high relevance, coverage, centrality proxy, and diversity."
+    },
+    {
+      "arxiv_id": "2510.22344v1",
+      "title": "FAIR-RAG: Faithful Adaptive Iterative Refinement for Retrieval-Augmented Generation",
+      "authors": [
+        "Mohammad Aghajani Asl",
+        "Majid Asgari-Bidhendi",
+        "Behrooz Minaei-Bidgoli"
+      ],
+      "abstract": "While Retrieval-Augmented Generation (RAG) mitigates hallucination and knowledge staleness in Large Language Models (LLMs), existing frameworks often falter on complex, multi-hop queries that require synthesizing information from disparate sources. Current advanced RAG methods, employing iterative or adaptive strategies, lack a robust mechanism to systematically identify and fill evidence gaps, often propagating noise or failing to gather a comprehensive context. We introduce FAIR-RAG, a novel agentic framework that transforms the standard RAG pipeline into a dynamic, evidence-driven reasoning process. At its core is an Iterative Refinement Cycle governed by a module we term Structured Evidence Assessment (SEA). The SEA acts as an analytical gating mechanism: it deconstructs the initial query into a checklist of required findings and audits the aggregated evidence to identify confirmed facts and, critically, explicit informational gaps. These gaps provide a precise signal to an Adaptive Query Refinement agent, which generates new, targeted sub-queries to retrieve missing information. This cycle repeats until the evidence is verified as sufficient, ensuring a comprehensive context for a final, strictly faithful generation. We conducted experiments on challenging multi-hop QA benchmarks, including HotpotQA, 2WikiMultiHopQA, and MusiQue. In a unified experimental setup, FAIR-RAG significantly outperforms strong baselines. On HotpotQA, it achieves an F1-score of 0.453 -- an absolute improvement of 8.3 points over the strongest iterative baseline -- establishing a new state-of-the-art for this class of methods on these benchmarks. Our work demonstrates that a structured, evidence-driven refinement process with explicit gap analysis is crucial for unlocking reliable and accurate reasoning in advanced RAG systems for complex, knowledge-intensive tasks.",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.IR"
+      ],
+      "published": "2025-10-25T15:59:33Z",
+      "updated": "2025-10-25T15:59:33Z",
+      "pdf_url": "https://arxiv.org/pdf/2510.22344v1",
+      "abs_url": "http://arxiv.org/abs/2510.22344v1",
+      "source_queries": [
+        "query_1_retrieval-augmented-generation",
+        "query_2_retrieval-augmented",
+        "query_3_generation",
+        "query_4_retrieval-augmented-generation",
+        "query_5_retrieval-augmented-generation"
+      ],
+      "semantic_relevance_score": 0.1323,
+      "coverage_score": 0.0,
+      "centrality_proxy_score": 0.5896,
+      "diversity_adjustment": 0.7727,
+      "metadata_quality_score": 0.926,
+      "final_rank_score": 0.3727,
+      "selected_reason": "Balanced high relevance, coverage, centrality proxy, and diversity."
+    }
+  ],
+  "method_cards": [
+    {
+      "paper_id": "2411.18583v1",
+      "title": "Automated Literature Review Using NLP Techniques and LLM-Based Retrieval-Augmented Generation",
+      "problem": "This research presents and compares multiple approaches to automate the generation of literature reviews using several Natural Language Processing (NLP) techniques and retrieval-augmented generation (RAG) with a Large Language Model (LLM). ",
+      "core_idea": "This research presents and compares multiple approaches to automate the generation of literature reviews using several Natural Language Processing (NLP) techniques and retrieval-augmented generation (RAG) with a Large Language Model (LLM).",
+      "method_summary": "This research presents and compares multiple approaches to automate the generation of literature reviews using several Natural Language Processing (NLP) techniques and retrieval-augmented generation (RAG) with a Large Language Model (LLM).",
+      "key_modules": [
+        "research",
+        "presents",
+        "compares",
+        "multiple",
+        "approaches"
+      ],
+      "training_or_inference": "Not explicitly available from metadata; inferred conservatively from abstract.",
+      "claimed_contributions": [
+        "Based on the evaluation, the Large Language Model GPT-3.5-turbo achieved the highest ROUGE-1 score, 0.364."
+      ],
+      "limitations": [
+        "The current extraction relies on abstract-level evidence and heuristic sectioning."
+      ],
+      "evidence_spans": [
+        {
+          "section_label": "abstract",
+          "quote": "This research presents and compares multiple approaches to automate the generation of literature reviews using several Natural Language Processing (NLP) techniques and retrieval-augmented generation (RAG) with a Large Language Model (LLM).",
+          "rationale": "Fallback extraction is tied to the provided abstract-derived section."
+        }
+      ]
+    },
+    {
+      "paper_id": "2601.05264v1",
+      "title": "Engineering the RAG Stack: A Comprehensive Review of the Architecture and Trust Frameworks for Retrieval-Augmented Generation Systems",
+      "problem": "This article provides a comprehensive systematic literature review of academic studies, industrial applications, and real-world deployments from 2018 to 2025, providing a practical guide and detailed overview of modern Retrieval-Augmented G",
+      "core_idea": "This article provides a comprehensive systematic literature review of academic studies, industrial applications, and real-world deployments from 2018 to 2025, providing a practical guide and detailed overview of modern Retrieval-Augmented G",
+      "method_summary": "This article provides a comprehensive systematic literature review of academic studies, industrial applications, and real-world deployments from 2018 to 2025, providing a practical guide and detailed overview of modern Retrieval-Augmented Generation (RAG) architectures.",
+      "key_modules": [
+        "article",
+        "provides",
+        "comprehensive",
+        "systematic",
+        "literature"
+      ],
+      "training_or_inference": "Not explicitly available from metadata; inferred conservatively from abstract.",
+      "claimed_contributions": [
+        "This article provides a comprehensive systematic literature review of academic studies, industrial applications, and real-world deployments from 2018 to 2025, providing a practical"
+      ],
+      "limitations": [
+        "The current extraction relies on abstract-level evidence and heuristic sectioning."
+      ],
+      "evidence_spans": [
+        {
+          "section_label": "abstract",
+          "quote": "This article provides a comprehensive systematic literature review of academic studies, industrial applications, and real-world deployments from 2018 to 2025, providing a practical guide and detailed overview of modern Retrieval-Augmented G",
+          "rationale": "Fallback extraction is tied to the provided abstract-derived section."
+        }
+      ]
+    },
+    {
+      "paper_id": "2510.22344v1",
+      "title": "FAIR-RAG: Faithful Adaptive Iterative Refinement for Retrieval-Augmented Generation",
+      "problem": "While Retrieval-Augmented Generation (RAG) mitigates hallucination and knowledge staleness in Large Language Models (LLMs), existing frameworks often falter on complex, multi-hop queries that require synthesizing information from disparate ",
+      "core_idea": "While Retrieval-Augmented Generation (RAG) mitigates hallucination and knowledge staleness in Large Language Models (LLMs), existing frameworks often falter on complex, multi-hop queries that require synthesizing information from disparate ",
+      "method_summary": "While Retrieval-Augmented Generation (RAG) mitigates hallucination and knowledge staleness in Large Language Models (LLMs), existing frameworks often falter on complex, multi-hop queries that require synthesizing information from disparate sources.",
+      "key_modules": [
+        "retrieval",
+        "augmented",
+        "generation",
+        "mitigates",
+        "hallucination"
+      ],
+      "training_or_inference": "Not explicitly available from metadata; inferred conservatively from abstract.",
+      "claimed_contributions": [
+        "In a unified experimental setup, FAIR-RAG significantly outperforms strong baselines. On HotpotQA, it achieves an F1-score of 0.453 -- an absolute improvement of 8.3 points over th"
+      ],
+      "limitations": [
+        "The current extraction relies on abstract-level evidence and heuristic sectioning."
+      ],
+      "evidence_spans": [
+        {
+          "section_label": "abstract",
+          "quote": "While Retrieval-Augmented Generation (RAG) mitigates hallucination and knowledge staleness in Large Language Models (LLMs), existing frameworks often falter on complex, multi-hop queries that require synthesizing information from disparate ",
+          "rationale": "Fallback extraction is tied to the provided abstract-derived section."
+        }
+      ]
+    }
+  ],
+  "clusters": [
+    {
+      "cluster_id": "cluster_1",
+      "theme": "Automated Literature Review Using NLP Techniques and LLM-Based Retrieval-Augmented Generation",
+      "summary": "Heuristic split cluster created to preserve topic diversity in the output.",
+      "paper_ids": [
+        "2411.18583v1"
+      ],
+      "representative_keywords": [
+        "approaches",
+        "compares",
+        "multiple",
+        "presents",
+        "research"
+      ]
+    },
+    {
+      "cluster_id": "cluster_2",
+      "theme": "Engineering the RAG Stack: A Comprehensive Review of the Architecture and Trust Frameworks for Retrieval-Augmented Generation Systems",
+      "summary": "Heuristic split cluster created to preserve topic diversity in the output.",
+      "paper_ids": [
+        "2601.05264v1"
+      ],
+      "representative_keywords": [
+        "article",
+        "comprehensive",
+        "literature",
+        "provides",
+        "systematic"
+      ]
+    },
+    {
+      "cluster_id": "cluster_3",
+      "theme": "FAIR-RAG: Faithful Adaptive Iterative Refinement for Retrieval-Augmented Generation",
+      "summary": "Heuristic split cluster created to preserve topic diversity in the output.",
+      "paper_ids": [
+        "2510.22344v1"
+      ],
+      "representative_keywords": [
+        "augmented",
+        "generation",
+        "hallucination",
+        "mitigates",
+        "retrieval"
+      ]
+    }
+  ],
+  "related_work": "In research on retrieval augmented generation, one visible line of work centers on Automated Literature Review Using NLP Techniques and LLM-Based Retrieval-Augmented Generation. Representative papers in this group commonly emphasize approaches, compares, multiple. Across these studies, the methods tend to share the following pattern: This research presents and compares multiple approaches to automate the generation of literature reviews using several Natural Language Processing (NLP) techniques and retrieval-augmented generation (RAG) with a Large Language Model (LLM). At the same time, the available evidence suggests trade-offs around The current extraction relies on abstract-level evidence and heuristic sectioning..\n\nIn research on retrieval augmented generation, one visible line of work centers on Engineering the RAG Stack: A Comprehensive Review of the Architecture and Trust Frameworks for Retrieval-Augmented Generation Systems. Representative papers in this group commonly emphasize article, comprehensive, literature. Across these studies, the methods tend to share the following pattern: This article provides a comprehensive systematic literature review of academic studies, industrial applications, and real-world deployments from 2018 to 2025, providing a practical guide and detailed overview of modern Retrieval-Augmented Generation (RAG) architectures. At the same time, the available evidence suggests trade-offs around The current extraction relies on abstract-level evidence and heuristic sectioning..\n\nIn research on retrieval augmented generation, one visible line of work centers on FAIR-RAG: Faithful Adaptive Iterative Refinement for Retrieval-Augmented Generation. Representative papers in this group commonly emphasize augmented, generation, hallucination. Across these studies, the methods tend to share the following pattern: While Retrieval-Augmented Generation (RAG) mitigates hallucination and knowledge staleness in Large Language Models (LLMs), existing frameworks often falter on complex, multi-hop queries that require synthesizing information from disparate sources. At the same time, the available evidence suggests trade-offs around The current extraction relies on abstract-level evidence and heuristic sectioning..",
+  "evidence_map": [
+    {
+      "paragraph_index": 0,
+      "paragraph_text": "In research on retrieval augmented generation, one visible line of work centers on Automated Literature Review Using NLP Techniques and LLM-Based Retrieval-Augmented Generation. Representative papers in this group commonly emphasize approaches, compares, multiple. Across these studies, the methods tend to share the following pattern: This research presents and compares multiple approaches to automate the generation of literature reviews using several Natural Language Processing (NLP) techniques and retrieval-augmented generation (RAG) with a Large Language Model (LLM). At the same time, the available evidence suggests trade-offs around The current extraction relies on abstract-level evidence and heuristic sectioning..",
+      "paper_ids": [
+        "2411.18583v1",
+        "2601.05264v1",
+        "2510.22344v1"
+      ],
+      "supporting_claims": [
+        "Supported by method cards from papers: 2411.18583v1, 2601.05264v1, 2510.22344v1"
+      ],
+      "unsupported_claims": []
+    },
+    {
+      "paragraph_index": 1,
+      "paragraph_text": "In research on retrieval augmented generation, one visible line of work centers on Engineering the RAG Stack: A Comprehensive Review of the Architecture and Trust Frameworks for Retrieval-Augmented Generation Systems. Representative papers in this group commonly emphasize article, comprehensive, literature. Across these studies, the methods tend to share the following pattern: This article provides a comprehensive systematic literature review of academic studies, industrial applications, and real-world deployments from 2018 to 2025, providing a practical guide and detailed overview of modern Retrieval-Augmented Generation (RAG) architectures. At the same time, the available evidence suggests trade-offs around The current extraction relies on abstract-level evidence and heuristic sectioning..",
+      "paper_ids": [
+        "2411.18583v1",
+        "2601.05264v1",
+        "2510.22344v1"
+      ],
+      "supporting_claims": [
+        "Supported by method cards from papers: 2411.18583v1, 2601.05264v1, 2510.22344v1"
+      ],
+      "unsupported_claims": []
+    },
+    {
+      "paragraph_index": 2,
+      "paragraph_text": "In research on retrieval augmented generation, one visible line of work centers on FAIR-RAG: Faithful Adaptive Iterative Refinement for Retrieval-Augmented Generation. Representative papers in this group commonly emphasize augmented, generation, hallucination. Across these studies, the methods tend to share the following pattern: While Retrieval-Augmented Generation (RAG) mitigates hallucination and knowledge staleness in Large Language Models (LLMs), existing frameworks often falter on complex, multi-hop queries that require synthesizing information from disparate sources. At the same time, the available evidence suggests trade-offs around The current extraction relies on abstract-level evidence and heuristic sectioning..",
+      "paper_ids": [
+        "2411.18583v1",
+        "2601.05264v1",
+        "2510.22344v1"
+      ],
+      "supporting_claims": [
+        "Supported by method cards from papers: 2411.18583v1, 2601.05264v1, 2510.22344v1"
+      ],
+      "unsupported_claims": []
+    }
+  ],
+  "verification_report": {
+    "supported_paragraphs": 3,
+    "flagged_paragraphs": 0,
+    "warnings": [],
+    "notes": [
+      "Verification is conservative and only uses the provided method cards.",
+      "Without stable full-text parsing, some nuanced claims may remain weakly grounded."
+    ]
+  },
+  "candidate_papers": [
+    {
+      "arxiv_id": "2411.18583v1",
+      "title": "Automated Literature Review Using NLP Techniques and LLM-Based Retrieval-Augmented Generation",
+      "authors": [
+        "Nurshat Fateh Ali",
+        "Md. Mahdi Mohtasim",
+        "Shakil Mosharrof",
+        "T. Gopi Krishna"
+      ],
+      "abstract": "This research presents and compares multiple approaches to automate the generation of literature reviews using several Natural Language Processing (NLP) techniques and retrieval-augmented generation (RAG) with a Large Language Model (LLM). The ever-increasing number of research articles provides a huge challenge for manual literature review. It has resulted in an increased demand for automation. Developing a system capable of automatically generating the literature reviews from only the PDF files as input is the primary objective of this research work. The effectiveness of several Natural Language Processing (NLP) strategies, such as the frequency-based method (spaCy), the transformer model (Simple T5), and retrieval-augmented generation (RAG) with Large Language Model (GPT-3.5-turbo), is evaluated to meet the primary objective. The SciTLDR dataset is chosen for this research experiment and three distinct techniques are utilized to implement three different systems for auto-generating the literature reviews. The ROUGE scores are used for the evaluation of all three systems. Based on the evaluation, the Large Language Model GPT-3.5-turbo achieved the highest ROUGE-1 score, 0.364. The transformer model comes in second place and spaCy is at the last position. Finally, a graphical user interface is created for the best system based on the large language model.",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.IR",
+        "cs.LG"
+      ],
+      "published": "2024-11-27T18:27:07Z",
+      "updated": "2024-11-27T18:27:07Z",
+      "pdf_url": "https://arxiv.org/pdf/2411.18583v1",
+      "abs_url": "http://arxiv.org/abs/2411.18583v1",
+      "source_queries": [
+        "query_1_retrieval-augmented-generation",
+        "query_2_retrieval-augmented",
+        "query_3_generation",
+        "query_4_retrieval-augmented-generation",
+        "query_5_retrieval-augmented-generation"
+      ]
+    },
+    {
+      "arxiv_id": "2502.00306v2",
+      "title": "Riddle Me This! Stealthy Membership Inference for Retrieval-Augmented Generation",
+      "authors": [
+        "Ali Naseh",
+        "Yuefeng Peng",
+        "Anshuman Suri",
+        "Harsh Chaudhari",
+        "Alina Oprea",
+        "Amir Houmansadr"
+      ],
+      "abstract": "Retrieval-Augmented Generation (RAG) enables Large Language Models (LLMs) to generate grounded responses by leveraging external knowledge databases without altering model parameters. Although the absence of weight tuning prevents leakage via model parameters, it introduces the risk of inference adversaries exploiting retrieved documents in the model's context. Existing methods for membership inference and data extraction often rely on jailbreaking or carefully crafted unnatural queries, which can be easily detected or thwarted with query rewriting techniques common in RAG systems. In this work, we present Interrogation Attack (IA), a membership inference technique targeting documents in the RAG datastore. By crafting natural-text queries that are answerable only with the target document's presence, our approach demonstrates successful inference with just 30 queries while remaining stealthy; straightforward detectors identify adversarial prompts from existing methods up to ~76x more frequently than those generated by our attack. We observe a 2x improvement in TPR@1%FPR over prior inference attacks across diverse RAG configurations, all while costing less than $0.02 per document inference.",
+      "categories": [
+        "cs.CR",
+        "cs.AI",
+        "cs.CL",
+        "cs.IR",
+        "cs.LG"
+      ],
+      "published": "2025-02-01T04:01:18Z",
+      "updated": "2025-06-30T16:37:59Z",
+      "pdf_url": "https://arxiv.org/pdf/2502.00306v2",
+      "abs_url": "http://arxiv.org/abs/2502.00306v2",
+      "source_queries": [
+        "query_1_retrieval-augmented-generation",
+        "query_2_retrieval-augmented",
+        "query_3_generation",
+        "query_4_retrieval-augmented-generation",
+        "query_5_retrieval-augmented-generation"
+      ]
+    },
+    {
+      "arxiv_id": "2510.22344v1",
+      "title": "FAIR-RAG: Faithful Adaptive Iterative Refinement for Retrieval-Augmented Generation",
+      "authors": [
+        "Mohammad Aghajani Asl",
+        "Majid Asgari-Bidhendi",
+        "Behrooz Minaei-Bidgoli"
+      ],
+      "abstract": "While Retrieval-Augmented Generation (RAG) mitigates hallucination and knowledge staleness in Large Language Models (LLMs), existing frameworks often falter on complex, multi-hop queries that require synthesizing information from disparate sources. Current advanced RAG methods, employing iterative or adaptive strategies, lack a robust mechanism to systematically identify and fill evidence gaps, often propagating noise or failing to gather a comprehensive context. We introduce FAIR-RAG, a novel agentic framework that transforms the standard RAG pipeline into a dynamic, evidence-driven reasoning process. At its core is an Iterative Refinement Cycle governed by a module we term Structured Evidence Assessment (SEA). The SEA acts as an analytical gating mechanism: it deconstructs the initial query into a checklist of required findings and audits the aggregated evidence to identify confirmed facts and, critically, explicit informational gaps. These gaps provide a precise signal to an Adaptive Query Refinement agent, which generates new, targeted sub-queries to retrieve missing information. This cycle repeats until the evidence is verified as sufficient, ensuring a comprehensive context for a final, strictly faithful generation. We conducted experiments on challenging multi-hop QA benchmarks, including HotpotQA, 2WikiMultiHopQA, and MusiQue. In a unified experimental setup, FAIR-RAG significantly outperforms strong baselines. On HotpotQA, it achieves an F1-score of 0.453 -- an absolute improvement of 8.3 points over the strongest iterative baseline -- establishing a new state-of-the-art for this class of methods on these benchmarks. Our work demonstrates that a structured, evidence-driven refinement process with explicit gap analysis is crucial for unlocking reliable and accurate reasoning in advanced RAG systems for complex, knowledge-intensive tasks.",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.IR"
+      ],
+      "published": "2025-10-25T15:59:33Z",
+      "updated": "2025-10-25T15:59:33Z",
+      "pdf_url": "https://arxiv.org/pdf/2510.22344v1",
+      "abs_url": "http://arxiv.org/abs/2510.22344v1",
+      "source_queries": [
+        "query_1_retrieval-augmented-generation",
+        "query_2_retrieval-augmented",
+        "query_3_generation",
+        "query_4_retrieval-augmented-generation",
+        "query_5_retrieval-augmented-generation"
+      ]
+    },
+    {
+      "arxiv_id": "2601.05264v1",
+      "title": "Engineering the RAG Stack: A Comprehensive Review of the Architecture and Trust Frameworks for Retrieval-Augmented Generation Systems",
+      "authors": [
+        "Dean Wampler",
+        "Dave Nielson",
+        "Alireza Seddighi"
+      ],
+      "abstract": "This article provides a comprehensive systematic literature review of academic studies, industrial applications, and real-world deployments from 2018 to 2025, providing a practical guide and detailed overview of modern Retrieval-Augmented Generation (RAG) architectures. RAG offers a modular approach for integrating external knowledge without increasing the capacity of the model as LLM systems expand. Research and engineering practices have been fragmented as a result of the increasing diversity of RAG methodologies, which encompasses a variety of fusion mechanisms, retrieval strategies, and orchestration approaches. We provide quantitative assessment frameworks, analyze the implications for trust and alignment, and systematically consolidate existing RAG techniques into a unified taxonomy. This document is a practical framework for the deployment of resilient, secure, and domain-adaptable RAG systems, synthesizing insights from academic literature, industry reports, and technical implementation guides. It also functions as a technical reference.",
+      "categories": [
+        "cs.IR",
+        "cs.AI"
+      ],
+      "published": "2025-11-07T16:26:29Z",
+      "updated": "2025-11-07T16:26:29Z",
+      "pdf_url": "https://arxiv.org/pdf/2601.05264v1",
+      "abs_url": "http://arxiv.org/abs/2601.05264v1",
+      "source_queries": [
+        "query_1_retrieval-augmented-generation",
+        "query_2_retrieval-augmented",
+        "query_3_generation",
+        "query_4_retrieval-augmented-generation",
+        "query_5_retrieval-augmented-generation"
+      ]
+    },
+    {
+      "arxiv_id": "2503.16581v1",
+      "title": "Investigating Retrieval-Augmented Generation in Quranic Studies: A Study of 13 Open-Source Large Language Models",
+      "authors": [
+        "Zahra Khalila",
+        "Arbi Haza Nasution",
+        "Winda Monika",
+        "Aytug Onan",
+        "Yohei Murakami",
+        "Yasir Bin Ismail Radi",
+        "Noor Mohammad Osmani"
+      ],
+      "abstract": "Accurate and contextually faithful responses are critical when applying large language models (LLMs) to sensitive and domain-specific tasks, such as answering queries related to quranic studies. General-purpose LLMs often struggle with hallucinations, where generated responses deviate from authoritative sources, raising concerns about their reliability in religious contexts. This challenge highlights the need for systems that can integrate domain-specific knowledge while maintaining response accuracy, relevance, and faithfulness. In this study, we investigate 13 open-source LLMs categorized into large (e.g., Llama3:70b, Gemma2:27b, QwQ:32b), medium (e.g., Gemma2:9b, Llama3:8b), and small (e.g., Llama3.2:3b, Phi3:3.8b). A Retrieval-Augmented Generation (RAG) is used to make up for the problems that come with using separate models. This research utilizes a descriptive dataset of Quranic surahs including the meanings, historical context, and qualities of the 114 surahs, allowing the model to gather relevant knowledge before responding. The models are evaluated using three key metrics set by human evaluators: context relevance, answer faithfulness, and answer relevance. The findings reveal that large models consistently outperform smaller models in capturing query semantics and producing accurate, contextually grounded responses. The Llama3.2:3b model, even though it is considered small, does very well on faithfulness (4.619) and relevance (4.857), showing the promise of smaller architectures that have been well optimized. This article examines the trade-offs between model size, computational efficiency, and response quality while using LLMs in domain-specific applications.",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2025-03-20T13:26:30Z",
+      "updated": "2025-03-20T13:26:30Z",
+      "pdf_url": "https://arxiv.org/pdf/2503.16581v1",
+      "abs_url": "http://arxiv.org/abs/2503.16581v1",
+      "source_queries": [
+        "query_1_retrieval-augmented-generation",
+        "query_2_retrieval-augmented",
+        "query_3_generation",
+        "query_4_retrieval-augmented-generation",
+        "query_5_retrieval-augmented-generation"
+      ]
+    }
+  ],
+  "paper_sections": [
+    {
+      "paper_id": "2411.18583v1",
+      "title": "Automated Literature Review Using NLP Techniques and LLM-Based Retrieval-Augmented Generation",
+      "sections": [
+        {
+          "label": "abstract",
+          "content": "This research presents and compares multiple approaches to automate the generation of literature reviews using several Natural Language Processing (NLP) techniques and retrieval-augmented generation (RAG) with a Large Language Model (LLM). The ever-increasing number of research articles provides a huge challenge for manual literature review. It has resulted in an increased demand for automation. Developing a system capable of automatically generating the literature reviews from only the PDF files as input is the primary objective of this research work. The effectiveness of several Natural Language Processing (NLP) strategies, such as the frequency-based method (spaCy), the transformer model (Simple T5), and retrieval-augmented generation (RAG) with Large Language Model (GPT-3.5-turbo), is evaluated to meet the primary objective. The SciTLDR dataset is chosen for this research experiment and three distinct techniques are utilized to implement three different systems for auto-generating the literature reviews. The ROUGE scores are used for the evaluation of all three systems. Based on the evaluation, the Large Language Model GPT-3.5-turbo achieved the highest ROUGE-1 score, 0.364. The transformer model comes in second place and spaCy is at the last position. Finally, a graphical user interface is created for the best system based on the large language model.",
+          "source": "arxiv_abstract"
+        },
+        {
+          "label": "introduction_like",
+          "content": "This research presents and compares multiple approaches to automate the generation of literature reviews using several Natural Language Processing (NLP) techniques and retrieval-augmented generation (RAG) with a Large Language Model (LLM). The ever-increasing number of research articles provides a huge challenge for manual literature review.",
+          "source": "heuristic_from_abstract"
+        },
+        {
+          "label": "method_like",
+          "content": "This research presents and compares multiple approaches to automate the generation of literature reviews using several Natural Language Processing (NLP) techniques and retrieval-augmented generation (RAG) with a Large Language Model (LLM).",
+          "source": "heuristic_from_abstract"
+        },
+        {
+          "label": "contribution_like",
+          "content": "Based on the evaluation, the Large Language Model GPT-3.5-turbo achieved the highest ROUGE-1 score, 0.364.",
+          "source": "heuristic_from_abstract"
+        }
+      ],
+      "extraction_notes": [
+        "Current version prefers metadata-based extraction from arXiv abstract.",
+        "PDF full-text extraction is comparatively hard to make stable across papers; using heuristic fallback."
+      ]
+    },
+    {
+      "paper_id": "2601.05264v1",
+      "title": "Engineering the RAG Stack: A Comprehensive Review of the Architecture and Trust Frameworks for Retrieval-Augmented Generation Systems",
+      "sections": [
+        {
+          "label": "abstract",
+          "content": "This article provides a comprehensive systematic literature review of academic studies, industrial applications, and real-world deployments from 2018 to 2025, providing a practical guide and detailed overview of modern Retrieval-Augmented Generation (RAG) architectures. RAG offers a modular approach for integrating external knowledge without increasing the capacity of the model as LLM systems expand. Research and engineering practices have been fragmented as a result of the increasing diversity of RAG methodologies, which encompasses a variety of fusion mechanisms, retrieval strategies, and orchestration approaches. We provide quantitative assessment frameworks, analyze the implications for trust and alignment, and systematically consolidate existing RAG techniques into a unified taxonomy. This document is a practical framework for the deployment of resilient, secure, and domain-adaptable RAG systems, synthesizing insights from academic literature, industry reports, and technical implementation guides. It also functions as a technical reference.",
+          "source": "arxiv_abstract"
+        },
+        {
+          "label": "introduction_like",
+          "content": "This article provides a comprehensive systematic literature review of academic studies, industrial applications, and real-world deployments from 2018 to 2025, providing a practical guide and detailed overview of modern Retrieval-Augmented Generation (RAG) architectures. RAG offers a modular approach for integrating external knowledge without increasing the capacity of the model as LLM systems expand.",
+          "source": "heuristic_from_abstract"
+        },
+        {
+          "label": "method_like",
+          "content": "This article provides a comprehensive systematic literature review of academic studies, industrial applications, and real-world deployments from 2018 to 2025, providing a practical guide and detailed overview of modern Retrieval-Augmented Generation (RAG) architectures.",
+          "source": "heuristic_from_abstract"
+        }
+      ],
+      "extraction_notes": [
+        "Current version prefers metadata-based extraction from arXiv abstract.",
+        "PDF full-text extraction is comparatively hard to make stable across papers; using heuristic fallback."
+      ]
+    },
+    {
+      "paper_id": "2510.22344v1",
+      "title": "FAIR-RAG: Faithful Adaptive Iterative Refinement for Retrieval-Augmented Generation",
+      "sections": [
+        {
+          "label": "abstract",
+          "content": "While Retrieval-Augmented Generation (RAG) mitigates hallucination and knowledge staleness in Large Language Models (LLMs), existing frameworks often falter on complex, multi-hop queries that require synthesizing information from disparate sources. Current advanced RAG methods, employing iterative or adaptive strategies, lack a robust mechanism to systematically identify and fill evidence gaps, often propagating noise or failing to gather a comprehensive context. We introduce FAIR-RAG, a novel agentic framework that transforms the standard RAG pipeline into a dynamic, evidence-driven reasoning process. At its core is an Iterative Refinement Cycle governed by a module we term Structured Evidence Assessment (SEA). The SEA acts as an analytical gating mechanism: it deconstructs the initial query into a checklist of required findings and audits the aggregated evidence to identify confirmed facts and, critically, explicit informational gaps. These gaps provide a precise signal to an Adaptive Query Refinement agent, which generates new, targeted sub-queries to retrieve missing information. This cycle repeats until the evidence is verified as sufficient, ensuring a comprehensive context for a final, strictly faithful generation. We conducted experiments on challenging multi-hop QA benchmarks, including HotpotQA, 2WikiMultiHopQA, and MusiQue. In a unified experimental setup, FAIR-RAG significantly outperforms strong baselines. On HotpotQA, it achieves an F1-score of 0.453 -- an absolute improvement of 8.3 points over the strongest iterative baseline -- establishing a new state-of-the-art for this class of methods on these benchmarks. Our work demonstrates that a structured, evidence-driven refinement process with explicit gap analysis is crucial for unlocking reliable and accurate reasoning in advanced RAG systems for complex, knowledge-intensive tasks.",
+          "source": "arxiv_abstract"
+        },
+        {
+          "label": "introduction_like",
+          "content": "While Retrieval-Augmented Generation (RAG) mitigates hallucination and knowledge staleness in Large Language Models (LLMs), existing frameworks often falter on complex, multi-hop queries that require synthesizing information from disparate sources. Current advanced RAG methods, employing iterative or adaptive strategies, lack a robust mechanism to systematically identify and fill evidence gaps, often propagating noise or failing to gather a comprehensive context.",
+          "source": "heuristic_from_abstract"
+        },
+        {
+          "label": "method_like",
+          "content": "While Retrieval-Augmented Generation (RAG) mitigates hallucination and knowledge staleness in Large Language Models (LLMs), existing frameworks often falter on complex, multi-hop queries that require synthesizing information from disparate sources.",
+          "source": "heuristic_from_abstract"
+        },
+        {
+          "label": "contribution_like",
+          "content": "In a unified experimental setup, FAIR-RAG significantly outperforms strong baselines. On HotpotQA, it achieves an F1-score of 0.453 -- an absolute improvement of 8.3 points over the strongest iterative baseline -- establishing a new state-of-the-art for this class of methods on these benchmarks.",
+          "source": "heuristic_from_abstract"
+        }
+      ],
+      "extraction_notes": [
+        "Current version prefers metadata-based extraction from arXiv abstract.",
+        "PDF full-text extraction is comparatively hard to make stable across papers; using heuristic fallback."
+      ]
+    }
+  ],
+  "debug": {
+    "intent_decomposer": {
+      "normalized_topic": "retrieval augmented generation",
+      "subtopics": [
+        "retrieval augmented",
+        "generation"
+      ],
+      "aliases": [
+        "retrieval augmented generation",
+        "retrieval augmented generation",
+        "RETRIEVAL AUGMENTED GENERATION"
+      ],
+      "related_phrases": [
+        "retrieval augmented generation methods",
+        "retrieval augmented generation applications",
+        "retrieval augmented generation benchmark",
+        "retrieval augmented generation framework"
+      ]
+    },
+    "query_planner": [
+      {
+        "name": "query_1_retrieval-augmented-generation",
+        "intent": "Cover topic aspect: retrieval augmented generation",
+        "arxiv_query": "all:\"retrieval augmented generation\" OR all:\"retrieval augmented generation\"",
+        "expected_focus": "retrieval augmented generation"
+      },
+      {
+        "name": "query_2_retrieval-augmented",
+        "intent": "Cover topic aspect: retrieval augmented",
+        "arxiv_query": "all:\"retrieval augmented generation\" OR all:\"retrieval augmented\"",
+        "expected_focus": "retrieval augmented"
+      },
+      {
+        "name": "query_3_generation",
+        "intent": "Cover topic aspect: generation",
+        "arxiv_query": "all:\"retrieval augmented generation\" OR all:\"generation\"",
+        "expected_focus": "generation"
+      },
+      {
+        "name": "query_4_retrieval-augmented-generation",
+        "intent": "Cover topic aspect: retrieval augmented generation",
+        "arxiv_query": "all:\"retrieval augmented generation\" OR all:\"retrieval augmented generation\"",
+        "expected_focus": "retrieval augmented generation"
+      },
+      {
+        "name": "query_5_retrieval-augmented-generation",
+        "intent": "Cover topic aspect: retrieval augmented generation",
+        "arxiv_query": "all:\"retrieval augmented generation\" OR all:\"retrieval augmented generation\"",
+        "expected_focus": "retrieval augmented generation"
+      }
+    ],
+    "arxiv_retriever_count": 25,
+    "candidate_merger_count": 5,
+    "paper_reranker_count": 3,
+    "paper_reader_count": 3,
+    "method_extractor_count": 3,
+    "theme_clusterer_count": 3,
+    "paragraph_summaries": [
+      "Cluster cluster_1 discusses Automated Literature Review Using NLP Techniques and LLM-Based Retrieval-Augmented Generation.",
+      "Cluster cluster_2 discusses Engineering the RAG Stack: A Comprehensive Review of the Architecture and Trust Frameworks for Retrieval-Augmented Generation Systems.",
+      "Cluster cluster_3 discusses FAIR-RAG: Faithful Adaptive Iterative Refinement for Retrieval-Augmented Generation."
+    ],
+    "verification": {
+      "supported_paragraphs": 3,
+      "flagged_paragraphs": 0,
+      "warnings": [],
+      "notes": [
+        "Verification is conservative and only uses the provided method cards.",
+        "Without stable full-text parsing, some nuanced claims may remain weakly grounded."
+      ]
+    }
+  }
+}

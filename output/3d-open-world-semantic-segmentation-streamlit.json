@@ -1,0 +1,424 @@
+{
+  "topic": "3D open-world semantic segmentation",
+  "expanded_intents": {
+    "normalized_topic": "3D open-world semantic segmentation",
+    "subtopics": [
+      "open world",
+      "semantic segmentation"
+    ],
+    "aliases": [
+      "3D open-world semantic segmentation",
+      "3D open world semantic segmentation",
+      "3D OPEN-WORLD SEMANTIC SEGMENTATION"
+    ],
+    "related_phrases": [
+      "3D open-world semantic segmentation methods",
+      "3D open-world semantic segmentation applications",
+      "3D open-world semantic segmentation benchmark",
+      "3D open-world semantic segmentation framework"
+    ]
+  },
+  "queries": [
+    {
+      "name": "query_1_3d-open-world-semantic-segmentation",
+      "intent": "Cover topic aspect: 3D open-world semantic segmentation",
+      "arxiv_query": "all:\"3D open-world semantic segmentation\"",
+      "expected_focus": "3D open-world semantic segmentation"
+    },
+    {
+      "name": "query_2_open-world",
+      "intent": "Cover topic aspect: open world",
+      "arxiv_query": "all:\"3D open-world semantic segmentation\" OR all:\"open world\"",
+      "expected_focus": "open world"
+    },
+    {
+      "name": "query_3_semantic-segmentation",
+      "intent": "Cover topic aspect: semantic segmentation",
+      "arxiv_query": "all:\"3D open-world semantic segmentation\" OR all:\"semantic segmentation\"",
+      "expected_focus": "semantic segmentation"
+    },
+    {
+      "name": "query_4_3d-open-world-semantic-segmentation",
+      "intent": "Cover topic aspect: 3D open world semantic segmentation",
+      "arxiv_query": "all:\"3D open-world semantic segmentation\" OR all:\"3D open world semantic segmentation\"",
+      "expected_focus": "3D open world semantic segmentation"
+    }
+  ],
+  "selected_papers": [
+    {
+      "arxiv_id": "2410.14159v2",
+      "title": "Assessing Open-world Forgetting in Generative Image Model Customization",
+      "authors": [
+        "Héctor Laria",
+        "Alex Gomez-Villa",
+        "Kai Wang",
+        "Bogdan Raducanu",
+        "Joost van de Weijer"
+      ],
+      "abstract": "Recent advances in diffusion models have significantly enhanced image generation capabilities. However, customizing these models with new classes often leads to unintended consequences that compromise their reliability. We introduce the concept of open-world forgetting to characterize the vast scope of these unintended alterations. Our work presents the first systematic investigation into open-world forgetting in diffusion models, focusing on semantic and appearance drift of representations. Using zero-shot classification, we demonstrate that even minor model adaptations can lead to significant semantic drift affecting areas far beyond newly introduced concepts, with accuracy drops of up to 60% on previously learned concepts. Our analysis of appearance drift reveals substantial changes in texture and color distributions of generated content. To address these issues, we propose a functional regularization strategy that effectively preserves original capabilities while accommodating new concepts. Through extensive experiments across multiple datasets and evaluation metrics, we demonstrate that our approach significantly reduces both semantic and appearance drift. Our study highlights the importance of considering open-world forgetting in future research on model customization and finetuning methods.",
+      "categories": [
+        "cs.CV",
+        "cs.GR",
+        "cs.LG"
+      ],
+      "published": "2024-10-18T03:58:29Z",
+      "updated": "2025-02-05T13:06:11Z",
+      "pdf_url": "https://arxiv.org/pdf/2410.14159v2",
+      "abs_url": "http://arxiv.org/abs/2410.14159v2",
+      "source_queries": [
+        "query_2_open-world"
+      ],
+      "semantic_relevance_score": 0.219,
+      "coverage_score": 0.0,
+      "centrality_proxy_score": 0.4805,
+      "diversity_adjustment": 1.0,
+      "metadata_quality_score": 0.8891,
+      "final_rank_score": 0.4117,
+      "selected_reason": "Balanced high relevance, coverage, centrality proxy, and diversity."
+    },
+    {
+      "arxiv_id": "2210.12852v3",
+      "title": "1st Place Solution of The Robust Vision Challenge 2022 Semantic Segmentation Track",
+      "authors": [
+        "Junfei Xiao",
+        "Zhichao Xu",
+        "Shiyi Lan",
+        "Zhiding Yu",
+        "Alan Yuille",
+        "Anima Anandkumar"
+      ],
+      "abstract": "This report describes the winning solution to the Robust Vision Challenge (RVC) semantic segmentation track at ECCV 2022. Our method adopts the FAN-B-Hybrid model as the encoder and uses SegFormer as the segmentation framework. The model is trained on a composite dataset consisting of images from 9 datasets (ADE20K, Cityscapes, Mapillary Vistas, ScanNet, VIPER, WildDash 2, IDD, BDD, and COCO) with a simple dataset balancing strategy. All the original labels are projected to a 256-class unified label space, and the model is trained using a cross-entropy loss. Without significant hyperparameter tuning or any specific loss weighting, our solution ranks the first place on all the testing semantic segmentation benchmarks from multiple domains (ADE20K, Cityscapes, Mapillary Vistas, ScanNet, VIPER, and WildDash 2). The proposed method can serve as a strong baseline for the multi-domain segmentation task and benefit future works. Code will be available at https://github.com/lambert-x/RVC_Segmentation.",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2022-10-23T20:52:22Z",
+      "updated": "2022-11-07T08:44:17Z",
+      "pdf_url": "https://arxiv.org/pdf/2210.12852v3",
+      "abs_url": "http://arxiv.org/abs/2210.12852v3",
+      "source_queries": [
+        "query_3_semantic-segmentation"
+      ],
+      "semantic_relevance_score": 0.1736,
+      "coverage_score": 0.0,
+      "centrality_proxy_score": 0.5079,
+      "diversity_adjustment": 1.0,
+      "metadata_quality_score": 0.9563,
+      "final_rank_score": 0.408,
+      "selected_reason": "Balanced high relevance, coverage, centrality proxy, and diversity."
+    },
+    {
+      "arxiv_id": "2407.15282v1",
+      "title": "Point Transformer V3 Extreme: 1st Place Solution for 2024 Waymo Open Dataset Challenge in Semantic Segmentation",
+      "authors": [
+        "Xiaoyang Wu",
+        "Xiang Xu",
+        "Lingdong Kong",
+        "Liang Pan",
+        "Ziwei Liu",
+        "Tong He",
+        "Wanli Ouyang",
+        "Hengshuang Zhao"
+      ],
+      "abstract": "In this technical report, we detail our first-place solution for the 2024 Waymo Open Dataset Challenge's semantic segmentation track. We significantly enhanced the performance of Point Transformer V3 on the Waymo benchmark by implementing cutting-edge, plug-and-play training and inference technologies. Notably, our advanced version, Point Transformer V3 Extreme, leverages multi-frame training and a no-clipping-point policy, achieving substantial gains over the original PTv3 performance. Additionally, employing a straightforward model ensemble strategy further boosted our results. This approach secured us the top position on the Waymo Open Dataset semantic segmentation leaderboard, markedly outperforming other entries.",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2024-07-21T22:08:52Z",
+      "updated": "2024-07-21T22:08:52Z",
+      "pdf_url": "https://arxiv.org/pdf/2407.15282v1",
+      "abs_url": "http://arxiv.org/abs/2407.15282v1",
+      "source_queries": [
+        "query_3_semantic-segmentation"
+      ],
+      "semantic_relevance_score": 0.241,
+      "coverage_score": 0.0,
+      "centrality_proxy_score": 0.4499,
+      "diversity_adjustment": 0.7273,
+      "metadata_quality_score": 0.8969,
+      "final_rank_score": 0.3731,
+      "selected_reason": "Balanced high relevance, coverage, centrality proxy, and diversity."
+    },
+    {
+      "arxiv_id": "2409.14273v1",
+      "title": "Lidar Panoptic Segmentation in an Open World",
+      "authors": [
+        "Anirudh S Chakravarthy",
+        "Meghana Reddy Ganesina",
+        "Peiyun Hu",
+        "Laura Leal-Taixe",
+        "Shu Kong",
+        "Deva Ramanan",
+        "Aljosa Osep"
+      ],
+      "abstract": "Addressing Lidar Panoptic Segmentation (LPS ) is crucial for safe deployment of autonomous vehicles. LPS aims to recognize and segment lidar points w.r.t. a pre-defined vocabulary of semantic classes, including thing classes of countable objects (e.g., pedestrians and vehicles) and stuff classes of amorphous regions (e.g., vegetation and road). Importantly, LPS requires segmenting individual thing instances (e.g., every single vehicle). Current LPS methods make an unrealistic assumption that the semantic class vocabulary is fixed in the real open world, but in fact, class ontologies usually evolve over time as robots encounter instances of novel classes that are considered to be unknowns w.r.t. the pre-defined class vocabulary. To address this unrealistic assumption, we study LPS in the Open World (LiPSOW): we train models on a dataset with a pre-defined semantic class vocabulary and study their generalization to a larger dataset where novel instances of thing and stuff classes can appear. This experimental setting leads to interesting conclusions. While prior art train class-specific instance segmentation methods and obtain state-of-the-art results on known classes, methods based on class-agnostic bottom-up grouping perform favorably on classes outside of the initial class vocabulary (i.e., unknown classes). Unfortunately, these methods do not perform on-par with fully data-driven methods on known classes. Our work suggests a middle ground: we perform class-agnostic point clustering and over-segment the input cloud in a hierarchical fashion, followed by binary point segment classification, akin to Region Proposal Network [1]. We obtain the final point cloud segmentation by computing a cut in the weighted hierarchical tree of point segments, independently of semantic classification. Remarkably, this unified approach leads to strong performance on both known and unknown classes.",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2024-09-22T00:10:20Z",
+      "updated": "2024-09-22T00:10:20Z",
+      "pdf_url": "https://arxiv.org/pdf/2409.14273v1",
+      "abs_url": "http://arxiv.org/abs/2409.14273v1",
+      "source_queries": [
+        "query_2_open-world"
+      ],
+      "semantic_relevance_score": 0.1785,
+      "coverage_score": 0.0,
+      "centrality_proxy_score": 0.5367,
+      "diversity_adjustment": 0.7692,
+      "metadata_quality_score": 0.8364,
+      "final_rank_score": 0.3688,
+      "selected_reason": "Balanced high relevance, coverage, centrality proxy, and diversity."
+    },
+    {
+      "arxiv_id": "2401.14403v2",
+      "title": "Adaptive Mobile Manipulation for Articulated Objects In the Open World",
+      "authors": [
+        "Haoyu Xiong",
+        "Russell Mendonca",
+        "Kenneth Shaw",
+        "Deepak Pathak"
+      ],
+      "abstract": "Deploying robots in open-ended unstructured environments such as homes has been a long-standing research problem. However, robots are often studied only in closed-off lab settings, and prior mobile manipulation work is restricted to pick-move-place, which is arguably just the tip of the iceberg in this area. In this paper, we introduce Open-World Mobile Manipulation System, a full-stack approach to tackle realistic articulated object operation, e.g. real-world doors, cabinets, drawers, and refrigerators in open-ended unstructured environments. The robot utilizes an adaptive learning framework to initially learns from a small set of data through behavior cloning, followed by learning from online practice on novel objects that fall outside the training distribution. We also develop a low-cost mobile manipulation hardware platform capable of safe and autonomous online adaptation in unstructured environments with a cost of around 20,000 USD. In our experiments we utilize 20 articulate objects across 4 buildings in the CMU campus. With less than an hour of online learning for each object, the system is able to increase success rate from 50% of BC pre-training to 95% using online adaptation. Video results at https://open-world-mobilemanip.github.io/",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV",
+        "cs.LG",
+        "eess.SY"
+      ],
+      "published": "2024-01-25T18:59:44Z",
+      "updated": "2024-01-28T18:58:29Z",
+      "pdf_url": "https://arxiv.org/pdf/2401.14403v2",
+      "abs_url": "http://arxiv.org/abs/2401.14403v2",
+      "source_queries": [
+        "query_2_open-world"
+      ],
+      "semantic_relevance_score": 0.1625,
+      "coverage_score": 0.0,
+      "centrality_proxy_score": 0.4996,
+      "diversity_adjustment": 0.7857,
+      "metadata_quality_score": 0.9142,
+      "final_rank_score": 0.3661,
+      "selected_reason": "Balanced high relevance, coverage, centrality proxy, and diversity."
+    }
+  ],
+  "method_cards": [
+    {
+      "paper_id": "2410.14159v2",
+      "title": "Assessing Open-world Forgetting in Generative Image Model Customization",
+      "problem": "Recent advances in diffusion models have significantly enhanced image generation capabilities. However, customizing these models with new classes often leads to unintended consequences that compromise their reliability. We introduce the con",
+      "core_idea": "Recent advances in diffusion models have significantly enhanced image generation capabilities.",
+      "method_summary": "Recent advances in diffusion models have significantly enhanced image generation capabilities.",
+      "key_modules": [
+        "recent",
+        "advances",
+        "diffusion",
+        "models",
+        "significantly"
+      ],
+      "training_or_inference": "Not explicitly available from metadata; inferred conservatively from abstract.",
+      "claimed_contributions": [
+        "Using zero-shot classification, we demonstrate that even minor model adaptations can lead to significant semantic drift affecting areas far beyond newly introduced concepts, with a"
+      ],
+      "limitations": [
+        "The current extraction relies on abstract-level evidence and heuristic sectioning."
+      ],
+      "evidence_spans": [
+        {
+          "section_label": "abstract",
+          "quote": "Recent advances in diffusion models have significantly enhanced image generation capabilities.",
+          "rationale": "Fallback extraction is tied to the provided abstract-derived section."
+        }
+      ]
+    },
+    {
+      "paper_id": "2210.12852v3",
+      "title": "1st Place Solution of The Robust Vision Challenge 2022 Semantic Segmentation Track",
+      "problem": "This report describes the winning solution to the Robust Vision Challenge (RVC) semantic segmentation track at ECCV 2022. Our method adopts the FAN-B-Hybrid model as the encoder and uses SegFormer as the segmentation framework. The model is",
+      "core_idea": "Our method adopts the FAN-B-Hybrid model as the encoder and uses SegFormer as the segmentation framework.",
+      "method_summary": "Our method adopts the FAN-B-Hybrid model as the encoder and uses SegFormer as the segmentation framework.",
+      "key_modules": [
+        "method",
+        "adopts",
+        "hybrid",
+        "encoder",
+        "segformer"
+      ],
+      "training_or_inference": "Not explicitly available from metadata; inferred conservatively from abstract.",
+      "claimed_contributions": [
+        "This report describes the winning solution to the Robust Vision Challenge (RVC) semantic segmentation track at ECCV 2022. Our method adopts the FAN-B-Hybrid model as the encoder an"
+      ],
+      "limitations": [
+        "The current extraction relies on abstract-level evidence and heuristic sectioning."
+      ],
+      "evidence_spans": [
+        {
+          "section_label": "abstract",
+          "quote": "Our method adopts the FAN-B-Hybrid model as the encoder and uses SegFormer as the segmentation framework.",
+          "rationale": "Fallback extraction is tied to the provided abstract-derived section."
+        }
+      ]
+    },
+    {
+      "paper_id": "2407.15282v1",
+      "title": "Point Transformer V3 Extreme: 1st Place Solution for 2024 Waymo Open Dataset Challenge in Semantic Segmentation",
+      "problem": "In this technical report, we detail our first-place solution for the 2024 Waymo Open Dataset Challenge's semantic segmentation track. We significantly enhanced the performance of Point Transformer V3 on the Waymo benchmark by implementing c",
+      "core_idea": "Additionally, employing a straightforward model ensemble strategy further boosted our results.",
+      "method_summary": "Additionally, employing a straightforward model ensemble strategy further boosted our results.",
+      "key_modules": [
+        "additionally",
+        "employing",
+        "straightforward",
+        "ensemble",
+        "strategy"
+      ],
+      "training_or_inference": "Not explicitly available from metadata; inferred conservatively from abstract.",
+      "claimed_contributions": [
+        "Additionally, employing a straightforward model ensemble strategy further boosted our results. This approach secured us the top position on the Waymo Open Dataset semantic segmenta"
+      ],
+      "limitations": [
+        "The current extraction relies on abstract-level evidence and heuristic sectioning."
+      ],
+      "evidence_spans": [
+        {
+          "section_label": "abstract",
+          "quote": "Additionally, employing a straightforward model ensemble strategy further boosted our results.",
+          "rationale": "Fallback extraction is tied to the provided abstract-derived section."
+        }
+      ]
+    },
+    {
+      "paper_id": "2409.14273v1",
+      "title": "Lidar Panoptic Segmentation in an Open World",
+      "problem": "Addressing Lidar Panoptic Segmentation (LPS ) is crucial for safe deployment of autonomous vehicles. LPS aims to recognize and segment lidar points w.r.t. a pre-defined vocabulary of semantic classes, including thing classes of countable ob",
+      "core_idea": "To address this unrealistic assumption, we study LPS in the Open World (LiPSOW): we train models on a dataset with a pre-defined semantic class vocabulary and study their generalization to a larger dataset where novel instances of thing and",
+      "method_summary": "To address this unrealistic assumption, we study LPS in the Open World (LiPSOW): we train models on a dataset with a pre-defined semantic class vocabulary and study their generalization to a larger dataset where novel instances of thing and stuff classes can appear.",
+      "key_modules": [
+        "address",
+        "unrealistic",
+        "assumption",
+        "lipsow",
+        "models"
+      ],
+      "training_or_inference": "Not explicitly available from metadata; inferred conservatively from abstract.",
+      "claimed_contributions": [
+        "While prior art train class-specific instance segmentation methods and obtain state-of-the-art results on known classes, methods based on class-agnostic bottom-up grouping perform "
+      ],
+      "limitations": [
+        "The current extraction relies on abstract-level evidence and heuristic sectioning."
+      ],
+      "evidence_spans": [
+        {
+          "section_label": "abstract",
+          "quote": "To address this unrealistic assumption, we study LPS in the Open World (LiPSOW): we train models on a dataset with a pre-defined semantic class vocabulary and study their generalization to a larger dataset where novel instances of thing and",
+          "rationale": "Fallback extraction is tied to the provided abstract-derived section."
+        }
+      ]
+    },
+    {
+      "paper_id": "2401.14403v2",
+      "title": "Adaptive Mobile Manipulation for Articulated Objects In the Open World",
+      "problem": "Deploying robots in open-ended unstructured environments such as homes has been a long-standing research problem. However, robots are often studied only in closed-off lab settings, and prior mobile manipulation work is restricted to pick-mo",
+      "core_idea": "In this paper, we introduce Open-World Mobile Manipulation System, a full-stack approach to tackle realistic articulated object operation, e.g.",
+      "method_summary": "In this paper, we introduce Open-World Mobile Manipulation System, a full-stack approach to tackle realistic articulated object operation, e.g.",
+      "key_modules": [
+        "introduce",
+        "mobile",
+        "manipulation",
+        "system",
+        "approach"
+      ],
+      "training_or_inference": "Not explicitly available from metadata; inferred conservatively from abstract.",
+      "claimed_contributions": [
+        "Video results at https://open-world-mobilemanip.github.io/"
+      ],
+      "limitations": [
+        "The current extraction relies on abstract-level evidence and heuristic sectioning."
+      ],
+      "evidence_spans": [
+        {
+          "section_label": "abstract",
+          "quote": "In this paper, we introduce Open-World Mobile Manipulation System, a full-stack approach to tackle realistic articulated object operation, e.g.",
+          "rationale": "Fallback extraction is tied to the provided abstract-derived section."
+        }
+      ]
+    }
+  ],
+  "clusters": [
+    {
+      "cluster_id": "cluster_1",
+      "theme": "open world",
+      "summary": "Papers in this cluster primarily focus on open world.",
+      "paper_ids": [
+        "2410.14159v2",
+        "2409.14273v1",
+        "2401.14403v2"
+      ],
+      "representative_keywords": [
+        "address",
+        "advances",
+        "approach",
+        "assumption",
+        "diffusion"
+      ]
+    },
+    {
+      "cluster_id": "cluster_2",
+      "theme": "semantic segmentation",
+      "summary": "Papers in this cluster primarily focus on semantic segmentation.",
+      "paper_ids": [
+        "2210.12852v3",
+        "2407.15282v1"
+      ],
+      "representative_keywords": [
+        "additionally",
+        "adopts",
+        "employing",
+        "encoder",
+        "ensemble"
+      ]
+    }
+  ],
+  "related_work": "In research on 3D open-world semantic segmentation, one visible line of work centers on open world. Representative papers in this group commonly emphasize address, advances, approach. Across these studies, the methods tend to share the following pattern: Recent advances in diffusion models have significantly enhanced image generation capabilities. To address this unrealistic assumption, we study LPS in the Open World (LiPSOW): we train models on a dataset with a pre-defined semantic class vocabulary and study their generalization to a larger dataset where novel instances of thing and stuff classes can appear. At the same time, the available evidence suggests trade-offs around The current extraction relies on abstract-level evidence and heuristic sectioning..\n\nIn research on 3D open-world semantic segmentation, one visible line of work centers on semantic segmentation. Representative papers in this group commonly emphasize additionally, adopts, employing. Across these studies, the methods tend to share the following pattern: Our method adopts the FAN-B-Hybrid model as the encoder and uses SegFormer as the segmentation framework. Additionally, employing a straightforward model ensemble strategy further boosted our results. At the same time, the available evidence suggests trade-offs around The current extraction relies on abstract-level evidence and heuristic sectioning..",
+  "evidence_map": [
+    {
+      "paragraph_index": 0,
+      "paragraph_text": "In research on 3D open-world semantic segmentation, one visible line of work centers on open world. Representative papers in this group commonly emphasize address, advances, approach. Across these studies, the methods tend to share the following pattern: Recent advances in diffusion models have significantly enhanced image generation capabilities. To address this unrealistic assumption, we study LPS in the Open World (LiPSOW): we train models on a dataset with a pre-defined semantic class vocabulary and study their generalization to a larger dataset where novel instances of thing and stuff classes can appear. At the same time, the available evidence suggests trade-offs around The current extraction relies on abstract-level evidence and heuristic sectioning..",
+      "paper_ids": [
+        "2410.14159v2",
+        "2210.12852v3",
+        "2407.15282v1",
+        "2409.14273v1",
+        "2401.14403v2"
+      ],
+      "supporting_claims": [
+        "Supported by method cards from papers: 2410.14159v2, 2210.12852v3, 2407.15282v1, 2409.14273v1, 2401.14403v2"
+      ],
+      "unsupported_claims": []
+    },
+    {
+      "paragraph_index": 1,
+      "paragraph_text": "In research on 3D open-world semantic segmentation, one visible line of work centers on semantic segmentation. Representative papers in this group commonly emphasize additionally, adopts, employing. Across these studies, the methods tend to share the following pattern: Our method adopts the FAN-B-Hybrid model as the encoder and uses SegFormer as the segmentation framework. Additionally, employing a straightforward model ensemble strategy further boosted our results. At the same time, the available evidence suggests trade-offs around The current extraction relies on abstract-level evidence and heuristic sectioning..",
+      "paper_ids": [
+        "2410.14159v2",
+        "2210.12852v3",
+        "2407.15282v1",
+        "2409.14273v1",
+        "2401.14403v2"
+      ],
+      "supporting_claims": [
+        "Supported by method cards from papers: 2410.14159v2, 2210.12852v3, 2407.15282v1, 2409.14273v1, 2401.14403v2"
+      ],
+      "unsupported_claims": []
+    }
+  ],
+  "verification_report": {
+    "supported_paragraphs": 2,
+    "flagged_paragraphs": 0,
+    "warnings": [],
+    "notes": [
+      "Verification is conservative and only uses the provided method cards.",
+      "Without stable full-text parsing, some nuanced claims may remain weakly grounded."
+    ]
+  }
+}

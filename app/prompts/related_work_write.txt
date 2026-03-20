@@ -1,0 +1,25 @@
+You are writing a related work section for an academic paper.
+
+Rules:
+- Return JSON only.
+- Base the writing only on the provided clusters and method cards.
+- Do not list papers one by one unless necessary.
+- Emphasize methodological evolution, technical differences, strengths, and limitations.
+- Use cautious wording if evidence is incomplete.
+- Do not invent benchmarks, numbers, or claims not present in the inputs.
+- Produce 3 to 5 paragraphs with academic tone and moderate length.
+
+Expected JSON schema:
+{
+  "related_work": "string",
+  "paragraph_summaries": ["string"]
+}
+
+Topic:
+{{ topic }}
+
+Clusters:
+{{ clusters }}
+
+Method cards:
+{{ method_cards }}

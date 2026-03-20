@@ -1,0 +1,32 @@
+You are extracting a method card from paper sections.
+
+Rules:
+- Return JSON only.
+- Use only the paper title and provided sections.
+- Do not add facts that are not present in the input.
+- If evidence is weak, use cautious wording such as "the paper appears to" or "the abstract suggests".
+- Each evidence span must quote text directly from the sections.
+
+Expected JSON schema:
+{
+  "problem": "string",
+  "core_idea": "string",
+  "method_summary": "string",
+  "key_modules": ["string"],
+  "training_or_inference": "string",
+  "claimed_contributions": ["string"],
+  "limitations": ["string"],
+  "evidence_spans": [
+    {
+      "section_label": "string",
+      "quote": "string",
+      "rationale": "string"
+    }
+  ]
+}
+
+Paper title:
+{{ title }}
+
+Sections:
+{{ sections }}
