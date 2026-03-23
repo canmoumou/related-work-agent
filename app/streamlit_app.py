@@ -84,6 +84,9 @@ def render_papers(result: dict) -> None:
             st.markdown(f"**Final Rank Score**: `{paper['final_rank_score']}`")
             st.markdown(f"**Authors**: {', '.join(paper['authors'])}")
             st.markdown(f"**Categories**: {', '.join(paper['categories'])}")
+            if paper.get("pdf_url"):
+                st.markdown(f"**PDF**: {paper['pdf_url']}")
+            st.markdown("**Abstract**")
             st.write(paper["abstract"])
 
 
@@ -101,6 +104,25 @@ def render_method_cards(result: dict) -> None:
             st.write(card["claimed_contributions"])
             st.markdown("**Limitations**")
             st.write(card["limitations"])
+
+
+def render_method_like_sections(result: dict) -> None:
+    """展示每篇论文抽取出的 method_like 内容。"""
+    st.subheader("提取出的 Method Like")
+    paper_sections = result.get("paper_sections", [])
+    if not paper_sections:
+        st.info("当前结果中没有可展示的 method_like 内容。")
+        return
+
+    for bundle in paper_sections:
+        method_like = next((section for section in bundle.get("sections", []) if section.get("label") == "method_like"), None)
+        if method_like is None:
+            continue
+        title = bundle.get("title", bundle.get("paper_id", "Untitled Paper"))
+        with st.expander(title, expanded=False):
+            st.markdown(f"**Paper ID**: `{bundle.get('paper_id', '')}`")
+            st.markdown(f"**Source**: `{method_like.get('source', '')}`")
+            st.write(method_like.get("content", ""))
 
 
 def render_related_work(result: dict) -> None:
@@ -122,7 +144,7 @@ def main() -> None:
     """Streamlit 页面主入口。"""
     st.set_page_config(page_title="Related Work Workflow Agent", layout="wide")
     st.title("Related Work Workflow Agent")
-    st.caption("基于 arXiv + LangGraph + Qwen 的 Related Work 生成前端")
+    st.caption("基于 arXiv 检索、PDF 下载、方法论抽取与 Qwen 生成的 Related Work 前端")
 
     topic, max_papers, debug_mode = render_sidebar()
     workflow = get_workflow()
@@ -134,24 +156,24 @@ def main() -> None:
 
         with st.spinner("正在运行 workflow，请稍候..."):
             # 页面当前直接调用本地 workflow，而不是通过 HTTP API 转发。
-            result = run_async(workflow.run(topic=topic, max_papers=max_papers, debug=debug_mode))
+            result = run_async(workflow.run(topic=topic, max_papers=max_papers, debug=True))
             payload = result.model_dump(mode="json")
             output_path = save_result(topic, payload)
 
         st.success(f"运行完成，结果已保存到 `{output_path}`")
-        tab_overview, tab_papers, tab_cards, tab_output, tab_raw = st.tabs(
-            ["概览", "论文", "方法卡片", "Related Work", "原始 JSON"]
+        tab_overview, tab_papers, tab_methods, tab_cards, tab_output = st.tabs(
+            ["概览", "论文", "提取方法论", "方法卡片", "Related Work"]
         )
         with tab_overview:
             render_overview(payload)
         with tab_papers:
             render_papers(payload)
+        with tab_methods:
+            render_method_like_sections(payload)
         with tab_cards:
             render_method_cards(payload)
         with tab_output:
             render_related_work(payload)
-        with tab_raw:
-            st.json(payload, expanded=False)
 
 
 if __name__ == "__main__":

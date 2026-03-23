@@ -33,6 +33,9 @@ class Settings(BaseSettings):
     arxiv_backoff_seconds: float = 2.0
     arxiv_user_agent: str = "related-work-agent/0.1 (contact: local-dev)"
     request_timeout_seconds: float = 60.0
+    pdf_download_timeout_seconds: float = 120.0
+    pdf_download_retry_count: int = 2
+    download_dir: Path = Path("downloads")
     max_llm_retries: int = 2
     output_dir: Path = Path("output")
 
@@ -49,5 +52,6 @@ class Settings(BaseSettings):
 def get_settings() -> Settings:
     """缓存配置对象，避免在运行中重复读取环境变量。"""
     settings = Settings()
+    settings.download_dir.mkdir(parents=True, exist_ok=True)
     settings.output_dir.mkdir(parents=True, exist_ok=True)
     return settings

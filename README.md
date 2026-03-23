@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/badge/License-MIT-lightgrey)](#)
 
 一个基于 `Python + FastAPI + LangGraph + Qwen(OpenAI-compatible) + Streamlit` 的 Related Work 生成工作流。  
-输入研究方向，系统会自动拆解主题、检索 arXiv、筛选代表性论文、生成 method cards、写出 related work，并给出证据映射。
+输入研究方向，系统会自动拆解主题、检索 arXiv、下载筛选后的论文 PDF、抽取方法论内容、生成 method cards、写出 related work，并给出证据映射。
 
 ## Table of Contents
 
@@ -28,6 +28,7 @@
 - arXiv-only 文献来源
 - 代表性排序使用“高相关 + 高代表性”代理策略，不伪造 citation count
 - LLM 输出统一走结构化解析，失败时有 fallback
+- 优先下载 PDF 并从全文方法论章节提取证据，而不是只依赖摘要
 - 提供 `FastAPI`、`CLI`、`Streamlit` 三种使用方式
 
 ## Workflow 🔄
@@ -215,8 +216,7 @@ pytest
 - 不做离线索引、长期缓存、数据库持久化
 - 不实现 citation graph
 - 不做高性能并发调度
-- `PaperReader` 当前主要依赖 arXiv metadata 和启发式 section 抽取
-- PDF 全文解析仍然是较难稳定完成的部分
+- PDF 全文解析仍然是较难稳定完成的部分，当前采用“章节标题 + 关键词”的启发式抽取
 - `Streamlit` 页面是原型前端，不是生产级 UI
 
 ## Why Not Citation Count 📉

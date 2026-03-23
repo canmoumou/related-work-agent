@@ -27,6 +27,7 @@ from app.models.schemas import (
 from app.models.workflow_state import WorkflowState
 from app.services.arxiv_client import ArxivClient
 from app.services.llm_client import LLMClient
+from app.services.paper_downloader import PaperDownloader
 from app.services.paper_reader import PaperReader
 from app.services.prompt_service import PromptService
 from app.services.reranker import PaperReranker
@@ -43,12 +44,14 @@ class RelatedWorkWorkflow:
         self,
         llm_client: LLMClient | None = None,
         arxiv_client: ArxivClient | None = None,
+        paper_downloader: PaperDownloader | None = None,
         paper_reader: PaperReader | None = None,
         reranker: PaperReranker | None = None,
         prompt_service: PromptService | None = None,
     ) -> None:
         self.llm_client = llm_client or LLMClient()
         self.arxiv_client = arxiv_client or ArxivClient()
+        self.paper_downloader = paper_downloader or PaperDownloader()
         self.paper_reader = paper_reader or PaperReader()
         self.reranker = reranker or PaperReranker()
         self.prompt_service = prompt_service or PromptService()
@@ -62,6 +65,7 @@ class RelatedWorkWorkflow:
         graph.add_node("arxiv_retriever", self.arxiv_retriever)
         graph.add_node("candidate_merger", self.candidate_merger)
         graph.add_node("paper_reranker", self.paper_reranker)
+        graph.add_node("paper_downloader", self.paper_downloader_node)
         graph.add_node("paper_reader", self.paper_reader_node)
         graph.add_node("method_extractor", self.method_extractor)
         graph.add_node("theme_clusterer", self.theme_clusterer)
@@ -73,7 +77,8 @@ class RelatedWorkWorkflow:
         graph.add_edge("query_planner", "arxiv_retriever")
         graph.add_edge("arxiv_retriever", "candidate_merger")
         graph.add_edge("candidate_merger", "paper_reranker")
-        graph.add_edge("paper_reranker", "paper_reader")
+        graph.add_edge("paper_reranker", "paper_downloader")
+        graph.add_edge("paper_downloader", "paper_reader")
         graph.add_edge("paper_reader", "method_extractor")
         graph.add_edge("method_extractor", "theme_clusterer")
         graph.add_edge("theme_clusterer", "related_work_writer")
@@ -232,11 +237,27 @@ class RelatedWorkWorkflow:
     async def paper_reader_node(self, state: WorkflowState) -> WorkflowState:
         """抽取每篇论文可供后续分析的 section 内容。"""
         LOGGER.info("PaperReader started")
-        paper_sections = await self.paper_reader.read(state.get("selected_papers", []))
+        paper_sections = await self.paper_reader.read(
+            state.get("selected_papers", []),
+            markdown_paths=state.get("paper_markdown_paths", {}),
+        )
         LOGGER.info("PaperReader finished with %s section bundles", len(paper_sections))
         return {
             "paper_sections": paper_sections,
             "debug": {**state.get("debug", {}), "paper_reader_count": len(paper_sections)},
+        }
+
+    async def paper_downloader_node(self, state: WorkflowState) -> WorkflowState:
+        """下载已筛选论文并生成 Markdown，供全文方法抽取使用。"""
+        LOGGER.info("PaperDownloader started")
+        paper_markdown_paths = await self.paper_downloader.download_many(state.get("selected_papers", []))
+        LOGGER.info("PaperDownloader finished with %s prepared Markdown papers", len(paper_markdown_paths))
+        return {
+            "paper_markdown_paths": paper_markdown_paths,
+            "debug": {
+                **state.get("debug", {}),
+                "paper_downloader_count": len(paper_markdown_paths),
+            },
         }
 
     async def method_extractor(self, state: WorkflowState) -> WorkflowState:
@@ -390,25 +411,31 @@ class RelatedWorkWorkflow:
 
     def _fallback_method_card(self, paper_id: str, title: str, sections: list[PaperSection]) -> MethodCard:
         """在无法稳定调用 LLM 时，保守生成 method card。"""
-        abstract = next((section.content for section in sections if section.label == "abstract"), "")
-        method_like = next((section.content for section in sections if section.label == "method_like"), abstract)
-        contribution_like = next((section.content for section in sections if section.label == "contribution_like"), abstract)
+        method_like = next(
+            (
+                section.content
+                for section in sections
+                if section.label in {"method", "methods", "approach", "methodology", "algorithm", "implementation", "method_like"}
+            ),
+            "",
+        )
+        seed_text = method_like or next((section.content for section in sections if section.content), "")
         modules = [token for token in tokenize(method_like) if len(token) > 5][:5]
         return MethodCard(
             paper_id=paper_id,
             title=title,
-            problem=abstract[:240] or "Problem statement is only partially observable from arXiv metadata.",
-            core_idea=method_like[:240] or "Core idea could not be extracted reliably; falling back to abstract.",
-            method_summary=method_like[:360] or abstract[:360],
+            problem=seed_text[:240] or "Problem statement is only partially observable from the extracted method text.",
+            core_idea=method_like[:240] or "Core idea could not be extracted reliably from the available method text.",
+            method_summary=method_like[:360] or seed_text[:360],
             key_modules=modules,
-            training_or_inference="Not explicitly available from metadata; inferred conservatively from abstract.",
-            claimed_contributions=[contribution_like[:180] or abstract[:180]],
-            limitations=["The current extraction relies on abstract-level evidence and heuristic sectioning."],
+            training_or_inference="Training or inference details are not stated explicitly enough in the extracted method text, so this summary remains conservative.",
+            claimed_contributions=[seed_text[:180]] if seed_text else [],
+            limitations=["Method extraction is heuristic and may miss details when PDF parsing quality is weak or section boundaries are noisy."],
             evidence_spans=[
                 {
-                    "section_label": sections[0].label if sections else "abstract",
-                    "quote": (method_like or abstract)[:240],
-                    "rationale": "Fallback extraction is tied to the provided abstract-derived section.",
+                    "section_label": sections[0].label if sections else "method_like",
+                    "quote": (method_like or seed_text)[:240],
+                    "rationale": "Fallback extraction is anchored to the extracted method_like section only.",
                 }
             ],
         )
@@ -437,9 +464,9 @@ class RelatedWorkWorkflow:
         if not paragraphs:
             paragraphs.append(
                 f"The current workflow retrieved arXiv papers related to {topic}, but the evidence remains sparse. "
-                f"The generated related work therefore stays conservative and focuses on method-level commonalities visible from abstracts."
+                f"The generated related work therefore stays conservative and focuses on method-level commonalities visible from the extracted paper text."
             )
-            summaries.append("Conservative fallback paragraph based on abstract-level evidence.")
+            summaries.append("Conservative fallback paragraph based on extracted method evidence.")
 
         return RelatedWorkPayload(
             related_work="\n\n".join(paragraphs),
@@ -479,7 +506,7 @@ class RelatedWorkWorkflow:
             warnings=warnings,
             notes=[
                 "Verification is conservative and only uses the provided method cards.",
-                "Without stable full-text parsing, some nuanced claims may remain weakly grounded.",
+                "When PDF parsing quality is weak, some nuanced method claims may remain only partially grounded.",
             ],
         )
         return VerificationPayload(

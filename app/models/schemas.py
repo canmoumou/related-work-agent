@@ -57,7 +57,7 @@ class RankedPaper(CandidatePaper):
 
 class PaperSection(BaseModel):
     """论文片段的结构化表示。"""
-    label: Literal["abstract", "introduction_like", "method_like", "contribution_like", "fallback_summary"]
+    label: str
     content: str
     source: str
 

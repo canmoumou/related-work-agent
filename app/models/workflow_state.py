@@ -26,6 +26,7 @@ class WorkflowState(TypedDict, total=False):
     candidate_papers: list[CandidatePaper]
     merged_papers: list[CandidatePaper]
     selected_papers: list[RankedPaper]
+    paper_markdown_paths: dict[str, str]
     paper_sections: list[PaperSections]
     method_cards: list[MethodCard]
     clusters: list[ThemeCluster]
