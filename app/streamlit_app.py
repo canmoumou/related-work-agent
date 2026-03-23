@@ -130,6 +130,26 @@ def render_related_work(result: dict) -> None:
     st.subheader("Related Work")
     st.write(result["related_work"])
 
+    paragraphs = result.get("related_work_paragraphs", [])
+    if paragraphs:
+        st.subheader("段落引用")
+        for paragraph in paragraphs:
+            paragraph_index = paragraph.get("paragraph_index", 0) + 1
+            with st.expander(f"段落 {paragraph_index}", expanded=paragraph_index == 1):
+                st.write(paragraph.get("paragraph_text", ""))
+                citations = paragraph.get("citations", [])
+                if not citations:
+                    st.info("该段当前没有可展示的有效引用。")
+                    continue
+                for citation_index, citation in enumerate(citations, start=1):
+                    st.markdown(
+                        f"**[{citation_index}] {citation.get('title', 'Unknown Paper')}** "
+                        f"(`{citation.get('paper_id', '')}`)"
+                    )
+                    st.markdown(f"**Section**: `{citation.get('section_label', '')}`")
+                    st.markdown(f"**Rationale**: {citation.get('rationale', '')}")
+                    st.code(citation.get("quote", ""), language=None)
+
     st.subheader("主题聚类")
     st.dataframe(result["clusters"], width="stretch")
 
@@ -155,10 +175,14 @@ def main() -> None:
             return
 
         with st.spinner("正在运行 workflow，请稍候..."):
-            # 页面当前直接调用本地 workflow，而不是通过 HTTP API 转发。
-            result = run_async(workflow.run(topic=topic, max_papers=max_papers, debug=True))
-            payload = result.model_dump(mode="json")
-            output_path = save_result(topic, payload)
+            try:
+                # 页面当前直接调用本地 workflow，而不是通过 HTTP API 转发。
+                result = run_async(workflow.run(topic=topic, max_papers=max_papers, debug=True))
+                payload = result.model_dump(mode="json")
+                output_path = save_result(topic, payload)
+            except Exception as e:
+                st.error("无法连接到llm，请检查网络和环境配置")
+                return
 
         st.success(f"运行完成，结果已保存到 `{output_path}`")
         tab_overview, tab_papers, tab_methods, tab_cards, tab_output = st.tabs(

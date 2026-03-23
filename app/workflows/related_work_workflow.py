@@ -17,6 +17,8 @@ from app.models.schemas import (
     PaperSection,
     ParagraphEvidence,
     QueryPlan,
+    RelatedWorkCitation,
+    RelatedWorkParagraph,
     RelatedWorkPayload,
     ThemeCluster,
     VerificationPayload,
@@ -106,6 +108,7 @@ class RelatedWorkWorkflow:
                 method_cards=result["method_cards"],
                 clusters=result["clusters"],
                 related_work=result["related_work"],
+                related_work_paragraphs=result.get("related_work_paragraphs", []),
                 evidence_map=result["evidence_map"],
                 verification_report=result["verification_report"],
                 debug=result.get("debug", {}),
@@ -119,6 +122,7 @@ class RelatedWorkWorkflow:
             method_cards=result["method_cards"],
             clusters=result["clusters"],
             related_work=result["related_work"],
+            related_work_paragraphs=result.get("related_work_paragraphs", []),
             evidence_map=result["evidence_map"],
             verification_report=result["verification_report"],
         )
@@ -127,22 +131,16 @@ class RelatedWorkWorkflow:
         """把用户输入主题拆成规范主题、子方向和别名。"""
         LOGGER.info("IntentDecomposer started")
         topic = state["topic"]
-        fallback = self._fallback_intent_decomposition(topic)
-
-        if self.llm_client.is_configured():
-            prompt = self.prompt_service.render("intent_decompose.txt", topic=topic)
-            payload = await self.llm_client.chat_json(
-                messages=[
-                    LLMMessage(role="system", content="Return strict JSON only."),
-                    LLMMessage(role="user", content=prompt),
-                ],
-                model_cls=IntentDecompositionPayload,
-                fallback_factory=lambda: IntentDecompositionPayload.model_validate(fallback.model_dump()),
-            )
-            result = IntentDecomposition.model_validate(payload.model_dump())
-        else:
-            result = fallback
-
+        prompt = self.prompt_service.render("intent_decompose.txt", topic=topic)
+        payload = await self.llm_client.chat_json(
+            messages=[
+                LLMMessage(role="system", content="Return strict JSON only."),
+                LLMMessage(role="user", content=prompt),
+            ],
+            model_cls=IntentDecompositionPayload,
+            fallback_factory=lambda: IntentDecompositionPayload(),
+        )
+        result = IntentDecomposition.model_validate(payload.model_dump())
         LOGGER.info("IntentDecomposer finished with %s subtopics", len(result.subtopics))
         return {
             "expanded_intents": result,
@@ -265,28 +263,24 @@ class RelatedWorkWorkflow:
         LOGGER.info("MethodExtractor started")
         cards: list[MethodCard] = []
         for bundle in state.get("paper_sections", []):
-            fallback = self._fallback_method_card(bundle.paper_id, bundle.title, bundle.sections)
-            if self.llm_client.is_configured():
-                prompt = self.prompt_service.render(
-                    "method_extract.txt",
-                    title=bundle.title,
-                    sections="\n\n".join(f"[{section.label}] {section.content}" for section in bundle.sections),
-                )
-                payload = await self.llm_client.chat_json(
-                    messages=[
-                        LLMMessage(role="system", content="Return strict JSON only."),
-                        LLMMessage(role="user", content=prompt),
-                    ],
-                    model_cls=MethodCardPayload,
-                    fallback_factory=lambda value=fallback: MethodCardPayload.model_validate(value.model_dump(exclude={"paper_id", "title"})),
-                )
-                card = MethodCard(
-                    paper_id=bundle.paper_id,
-                    title=bundle.title,
-                    **payload.model_dump(),
-                )
-            else:
-                card = fallback
+            prompt = self.prompt_service.render(
+                "method_extract.txt",
+                title=bundle.title,
+                sections="\n\n".join(f"[{section.label}] {section.content}" for section in bundle.sections),
+            )
+            payload = await self.llm_client.chat_json(
+                messages=[
+                    LLMMessage(role="system", content="Return strict JSON only."),
+                    LLMMessage(role="user", content=prompt),
+                ],
+                model_cls=MethodCardPayload,
+                fallback_factory=lambda: MethodCardPayload(),
+            )
+            card = MethodCard(
+                paper_id=bundle.paper_id,
+                title=bundle.title,
+                **payload.model_dump(),
+            )
             cards.append(card)
 
         LOGGER.info("MethodExtractor finished with %s method cards", len(cards))
@@ -333,169 +327,65 @@ class RelatedWorkWorkflow:
     async def related_work_writer(self, state: WorkflowState) -> WorkflowState:
         """基于 clusters 和 method cards 生成 related work。"""
         LOGGER.info("RelatedWorkWriter started")
-        fallback_payload = self._fallback_related_work(
+        prompt = self.prompt_service.render(
+            "related_work_write.txt",
             topic=state["topic"],
-            clusters=state.get("clusters", []),
-            method_cards=state.get("method_cards", []),
+            clusters=[cluster.model_dump() for cluster in state.get("clusters", [])],
+            method_cards=self._build_related_work_prompt_cards(state.get("method_cards", [])),
+        )
+        payload = await self.llm_client.chat_json(
+            messages=[
+                LLMMessage(role="system", content="Return strict JSON only."),
+                LLMMessage(role="user", content=prompt),
+            ],
+            model_cls=RelatedWorkPayload,
+            fallback_factory=lambda: RelatedWorkPayload(),
         )
 
-        if self.llm_client.is_configured():
-            prompt = self.prompt_service.render(
-                "related_work_write.txt",
-                topic=state["topic"],
-                clusters=[cluster.model_dump() for cluster in state.get("clusters", [])],
-                method_cards=[card.model_dump() for card in state.get("method_cards", [])],
-            )
-            payload = await self.llm_client.chat_json(
-                messages=[
-                    LLMMessage(role="system", content="Return strict JSON only."),
-                    LLMMessage(role="user", content=prompt),
-                ],
-                model_cls=RelatedWorkPayload,
-                fallback_factory=lambda value=fallback_payload: value,
-            )
-        else:
-            payload = fallback_payload
+        paragraphs = self._normalize_related_work_paragraphs(
+            payload.paragraphs or [],
+            state.get("method_cards", []),
+        )
+        related_work_text = self._render_related_work(paragraphs)
 
         LOGGER.info("RelatedWorkWriter finished")
         return {
-            "related_work": payload.related_work,
-            "debug": {**state.get("debug", {}), "paragraph_summaries": payload.paragraph_summaries},
+            "related_work": related_work_text,
+            "related_work_paragraphs": paragraphs,
+            "debug": {
+                **state.get("debug", {}),
+                "paragraph_summaries": payload.paragraph_summaries,
+            },
         }
 
     async def evidence_mapper(self, state: WorkflowState) -> WorkflowState:
         """把 related work 段落映射回论文证据，并给出校验报告。"""
         LOGGER.info("EvidenceMapper started")
-        fallback_payload = self._fallback_verification(
-            state["related_work"],
-            state.get("method_cards", []),
-        )
-
-        if self.llm_client.is_configured():
-            prompt = self.prompt_service.render(
-                "verify.txt",
-                related_work=state["related_work"],
-                method_cards=[card.model_dump() for card in state.get("method_cards", [])],
-            )
-            payload = await self.llm_client.chat_json(
-                messages=[
-                    LLMMessage(role="system", content="Return strict JSON only."),
-                    LLMMessage(role="user", content=prompt),
-                ],
-                model_cls=VerificationPayload,
-                fallback_factory=lambda value=fallback_payload: value,
-            )
-        else:
-            payload = fallback_payload
-
-        LOGGER.info("EvidenceMapper finished with %s paragraph mappings", len(payload.evidence_map))
-        return {
-            "evidence_map": payload.evidence_map,
-            "verification_report": payload.verification_report,
-            "debug": {**state.get("debug", {}), "verification": payload.verification_report.model_dump()},
-        }
-
-    def _fallback_intent_decomposition(self, topic: str) -> IntentDecomposition:
-        """当 LLM 不可用时，使用启发式方式做基础方向拆解。"""
-        tokens = [token for token in tokenize(topic) if len(token) > 2]
-        unique_tokens = list(dict.fromkeys(tokens))
-        subtopics = [normalize_whitespace(" ".join(unique_tokens[i : i + 2])) for i in range(0, min(len(unique_tokens), 8), 2)]
-        aliases = [topic, topic.replace("-", " "), topic.upper()[:40]]
-        related_phrases = [f"{topic} methods", f"{topic} applications", f"{topic} benchmark", f"{topic} framework"]
-        return IntentDecomposition(
-            normalized_topic=normalize_whitespace(topic),
-            subtopics=[item for item in subtopics if item][:4] or [normalize_whitespace(topic)],
-            aliases=[item for item in aliases if item][:3],
-            related_phrases=related_phrases[:4],
-        )
-
-    def _fallback_method_card(self, paper_id: str, title: str, sections: list[PaperSection]) -> MethodCard:
-        """在无法稳定调用 LLM 时，保守生成 method card。"""
-        method_like = next(
-            (
-                section.content
-                for section in sections
-                if section.label in {"method", "methods", "approach", "methodology", "algorithm", "implementation", "method_like"}
-            ),
-            "",
-        )
-        seed_text = method_like or next((section.content for section in sections if section.content), "")
-        modules = [token for token in tokenize(method_like) if len(token) > 5][:5]
-        return MethodCard(
-            paper_id=paper_id,
-            title=title,
-            problem=seed_text[:240] or "Problem statement is only partially observable from the extracted method text.",
-            core_idea=method_like[:240] or "Core idea could not be extracted reliably from the available method text.",
-            method_summary=method_like[:360] or seed_text[:360],
-            key_modules=modules,
-            training_or_inference="Training or inference details are not stated explicitly enough in the extracted method text, so this summary remains conservative.",
-            claimed_contributions=[seed_text[:180]] if seed_text else [],
-            limitations=["Method extraction is heuristic and may miss details when PDF parsing quality is weak or section boundaries are noisy."],
-            evidence_spans=[
-                {
-                    "section_label": sections[0].label if sections else "method_like",
-                    "quote": (method_like or seed_text)[:240],
-                    "rationale": "Fallback extraction is anchored to the extracted method_like section only.",
-                }
-            ],
-        )
-
-    def _fallback_related_work(self, topic: str, clusters: list[ThemeCluster], method_cards: list[MethodCard]) -> RelatedWorkPayload:
-        """在没有 LLM 时，用模板化方式生成保守的 related work。"""
-        paragraphs: list[str] = []
-        summaries: list[str] = []
-        card_lookup = {card.paper_id: card for card in method_cards}
-
-        for cluster in clusters:
-            cards = [card_lookup[paper_id] for paper_id in cluster.paper_ids if paper_id in card_lookup]
-            if not cards:
-                continue
-            paragraph = (
-                f"In research on {topic}, one visible line of work centers on {cluster.theme}. "
-                f"Representative papers in this group commonly emphasize {', '.join(cluster.representative_keywords[:3]) or 'closely related technical modules'}. "
-                f"Across these studies, the methods tend to share the following pattern: "
-                f"{' '.join(card.method_summary for card in cards[:2])} "
-                f"At the same time, the available evidence suggests trade-offs around "
-                f"{'; '.join(cards[0].limitations[:2]) if cards[0].limitations else 'evaluation scope and abstraction level'}."
-            )
-            paragraphs.append(paragraph)
-            summaries.append(f"Cluster {cluster.cluster_id} discusses {cluster.theme}.")
-
-        if not paragraphs:
-            paragraphs.append(
-                f"The current workflow retrieved arXiv papers related to {topic}, but the evidence remains sparse. "
-                f"The generated related work therefore stays conservative and focuses on method-level commonalities visible from the extracted paper text."
-            )
-            summaries.append("Conservative fallback paragraph based on extracted method evidence.")
-
-        return RelatedWorkPayload(
-            related_work="\n\n".join(paragraphs),
-            paragraph_summaries=summaries,
-        )
-
-    def _fallback_verification(self, related_work: str, method_cards: list[MethodCard]) -> VerificationPayload:
-        """基于词项重叠做一个保守的证据校验。"""
-        paragraphs = [normalize_whitespace(item) for item in related_work.split("\n\n") if normalize_whitespace(item)]
+        paragraphs = state.get("related_work_paragraphs", [])
+        method_cards = state.get("method_cards", [])
+        
         evidence_map: list[ParagraphEvidence] = []
         warnings: list[str] = []
+        valid_ids = {card.paper_id for card in method_cards}
 
-        for index, paragraph in enumerate(paragraphs):
-            matched_ids = [
-                card.paper_id
-                for card in method_cards
-                if self._keyword_overlap_score(paragraph, f"{card.title} {card.method_summary} {' '.join(card.claimed_contributions)}") > 0
+        for paragraph in paragraphs:
+            matched_ids = [citation.paper_id for citation in paragraph.citations if citation.paper_id in valid_ids]
+            supporting_claims = [
+                f"{citation.title}: {citation.quote}"
+                for citation in paragraph.citations
+                if citation.paper_id in valid_ids
             ]
-            unsupported_claims = []
+            unsupported_claims: list[str] = []
             if not matched_ids:
-                unsupported_claims.append("No strong paper-level lexical evidence was found for this paragraph.")
-                warnings.append(f"Paragraph {index} may be weakly supported.")
+                unsupported_claims.append("This paragraph does not include any validated paper citation.")
+                warnings.append(f"Paragraph {paragraph.paragraph_index} may be weakly supported.")
 
             evidence_map.append(
                 ParagraphEvidence(
-                    paragraph_index=index,
-                    paragraph_text=paragraph,
+                    paragraph_index=paragraph.paragraph_index,
+                    paragraph_text=paragraph.paragraph_text,
                     paper_ids=matched_ids,
-                    supporting_claims=[f"Supported by method cards from papers: {', '.join(matched_ids[:5])}"] if matched_ids else [],
+                    supporting_claims=supporting_claims,
                     unsupported_claims=unsupported_claims,
                 )
             )
@@ -509,10 +399,97 @@ class RelatedWorkWorkflow:
                 "When PDF parsing quality is weak, some nuanced method claims may remain only partially grounded.",
             ],
         )
-        return VerificationPayload(
+        payload = VerificationPayload(
             evidence_map=evidence_map,
             verification_report=verification_report,
         )
+
+        LOGGER.info("EvidenceMapper finished with %s paragraph mappings", len(payload.evidence_map))
+        return {
+            "evidence_map": payload.evidence_map,
+            "verification_report": payload.verification_report,
+            "debug": {**state.get("debug", {}), "verification": payload.verification_report.model_dump()},
+        }
+
+
+
+    def _build_related_work_prompt_cards(self, method_cards: list[MethodCard]) -> list[dict[str, object]]:
+        """为 related work prompt 构造更适合引用约束的论文卡片。"""
+        return [
+            {
+                "paper_id": card.paper_id,
+                "title": card.title,
+                "problem": card.problem,
+                "core_idea": card.core_idea,
+                "method_summary": card.method_summary,
+                "key_modules": card.key_modules,
+                "limitations": card.limitations,
+                "evidence_spans": [span.model_dump() for span in card.evidence_spans],
+            }
+            for card in method_cards
+        ]
+
+
+
+    def _normalize_related_work_paragraphs(
+        self,
+        paragraphs: list[RelatedWorkParagraph],
+        method_cards: list[MethodCard],
+    ) -> list[RelatedWorkParagraph]:
+        """过滤并修正段落中的引用，确保引用严格落在已有证据片段上。"""
+        card_lookup = {card.paper_id: card for card in method_cards}
+        normalized_paragraphs: list[RelatedWorkParagraph] = []
+
+        for index, paragraph in enumerate(paragraphs):
+            paragraph_text = normalize_whitespace(paragraph.paragraph_text)
+            if not paragraph_text:
+                continue
+            citations: list[RelatedWorkCitation] = []
+            seen_keys: set[tuple[str, str]] = set()
+            for citation in paragraph.citations:
+                card = card_lookup.get(citation.paper_id)
+                if card is None:
+                    continue
+                matched_span = next(
+                    (
+                        span
+                        for span in card.evidence_spans
+                        if normalize_whitespace(span.quote) == normalize_whitespace(citation.quote)
+                    ),
+                    None,
+                )
+                if matched_span is None:
+                    continue
+                citation_key = (card.paper_id, normalize_whitespace(matched_span.quote))
+                if citation_key in seen_keys:
+                    continue
+                seen_keys.add(citation_key)
+                citations.append(
+                    RelatedWorkCitation(
+                        paper_id=card.paper_id,
+                        title=card.title,
+                        section_label=matched_span.section_label,
+                        quote=matched_span.quote,
+                        rationale=matched_span.rationale,
+                    )
+                )
+            normalized_paragraphs.append(
+                RelatedWorkParagraph(
+                    paragraph_index=index,
+                    paragraph_text=paragraph_text,
+                    citations=citations,
+                )
+            )
+        return normalized_paragraphs
+
+    def _render_related_work(self, paragraphs: list[RelatedWorkParagraph]) -> str:
+        """把结构化段落渲染为带引用标记的 related work 文本。"""
+        rendered_paragraphs: list[str] = []
+        for paragraph in paragraphs:
+            citation_ids = list(dict.fromkeys(citation.paper_id for citation in paragraph.citations if citation.paper_id))
+            citation_suffix = f" [{'; '.join(citation_ids)}]" if citation_ids else ""
+            rendered_paragraphs.append(f"{paragraph.paragraph_text}{citation_suffix}")
+        return "\n\n".join(rendered_paragraphs)
 
     @staticmethod
     def _keyword_overlap_score(left: str, right: str) -> int:

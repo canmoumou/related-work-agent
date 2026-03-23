@@ -7,13 +7,38 @@ Rules:
 - Emphasize methodological evolution, technical differences, strengths, and limitations.
 - Use cautious wording if evidence is incomplete.
 - Do not invent benchmarks, numbers, or claims not present in the inputs.
+- Every paragraph must include explicit citations grounded in the provided method cards.
+- Each citation quote must copy text verbatim from one of the provided `evidence_spans.quote` fields.
+- If a paragraph contains a concrete technical claim, only keep that claim when it is directly supported by at least one cited quote.
+- Do not cite a paper unless the cited quote really supports the paragraph content.
 - Produce 3 to 5 paragraphs with academic tone and moderate length.
 
 Expected JSON schema:
 {
   "related_work": "string",
-  "paragraph_summaries": ["string"]
+  "paragraph_summaries": ["string"],
+  "paragraphs": [
+    {
+      "paragraph_index": 0,
+      "paragraph_text": "string",
+      "citations": [
+        {
+          "paper_id": "string",
+          "title": "string",
+          "section_label": "string",
+          "quote": "string copied verbatim from evidence_spans.quote",
+          "rationale": "string"
+        }
+      ]
+    }
+  ]
 }
+
+Important:
+- `paragraph_text` should be plain prose without citation markers appended; the system will render citation markers later.
+- `related_work` should be the plain paragraphs joined together, consistent with `paragraphs`.
+- Prefer 1 to 3 citations per paragraph.
+- Reuse only the exact `paper_id`, `title`, `section_label`, and quote content from the provided inputs.
 
 Topic:
 {{ topic }}

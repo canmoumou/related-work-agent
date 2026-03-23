@@ -12,6 +12,7 @@ from app.models.schemas import (
     ParagraphEvidence,
     QueryPlan,
     RankedPaper,
+    RelatedWorkParagraph,
     ThemeCluster,
     VerificationReport,
 )
@@ -31,6 +32,7 @@ class WorkflowState(TypedDict, total=False):
     method_cards: list[MethodCard]
     clusters: list[ThemeCluster]
     related_work: str
+    related_work_paragraphs: list[RelatedWorkParagraph]
     evidence_map: list[ParagraphEvidence]
     verification_report: VerificationReport
     debug: dict[str, Any]

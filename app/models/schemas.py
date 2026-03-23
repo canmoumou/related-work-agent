@@ -77,6 +77,15 @@ class EvidenceSpan(BaseModel):
     rationale: str
 
 
+class RelatedWorkCitation(BaseModel):
+    """related work 段落中展示的引用证据。"""
+    paper_id: str
+    title: str
+    section_label: str
+    quote: str
+    rationale: str
+
+
 class MethodCard(BaseModel):
     """从论文方法论中抽取出的结构化卡片。"""
     paper_id: str
@@ -98,6 +107,13 @@ class ThemeCluster(BaseModel):
     summary: str
     paper_ids: list[str] = Field(default_factory=list)
     representative_keywords: list[str] = Field(default_factory=list)
+
+
+class RelatedWorkParagraph(BaseModel):
+    """related work 的单段正文与其引用。"""
+    paragraph_index: int
+    paragraph_text: str
+    citations: list[RelatedWorkCitation] = Field(default_factory=list)
 
 
 class ParagraphEvidence(BaseModel):
@@ -126,6 +142,7 @@ class WorkflowRunResponse(BaseModel):
     method_cards: list[MethodCard]
     clusters: list[ThemeCluster]
     related_work: str
+    related_work_paragraphs: list[RelatedWorkParagraph]
     evidence_map: list[ParagraphEvidence]
     verification_report: VerificationReport
 
@@ -179,6 +196,7 @@ class RelatedWorkPayload(BaseModel):
     """LLM 返回的 related work 结构。"""
     related_work: str
     paragraph_summaries: list[str]
+    paragraphs: list[RelatedWorkParagraph] = Field(default_factory=list)
 
 
 class VerificationPayload(BaseModel):
