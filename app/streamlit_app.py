@@ -47,7 +47,7 @@ def render_sidebar() -> tuple[str, int, bool]:
     """渲染左侧参数面板。"""
     st.sidebar.header("运行配置")
     topic = st.sidebar.text_area(
-        "研究方向",
+        "研究方向（目前只支持英文查询）",
         value="retrieval augmented generation",
         help="输入你想生成 related work 的研究方向，可以是较模糊的主题。",
     )
